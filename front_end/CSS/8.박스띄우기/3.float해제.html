@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .container {
+            width: 700px;
+            padding: 20px;
+            border: 3px solid red;
+            /* overflow: hidden; clear와 같은 기능이지만 나중에 오류가 많음*/
+        }
+
+        .box {
+            width: 200px;
+            height: 150px;
+            border: 3px solid green;
+            background: yellow;
+            font-size: 50px;
+            float: left;
+        }
+
+        .clear-box {
+            clear: both; /*박스를 하나 새로 만들어서 float 기능을 종료[정석]*/
+        }
+
+        /*after 가상선택자를 이용하여 float 기능을 종료하는 진정한 정석*/
+        .clearfix::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+
+    <!--after방식으로 진정한 정석-->
+    <div class="container clearfix">
+        <div class="box">1</div>
+        <div class="box">2</div>
+        <!-- <div class="clear-box"></div> -->
+    </div> 
+    
+</body>
+</html>

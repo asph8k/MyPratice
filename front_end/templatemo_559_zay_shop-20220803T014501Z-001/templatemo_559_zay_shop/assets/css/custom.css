@@ -1,0 +1,142 @@
+/*
+Custom Css
+*/
+
+/*
+    슬라이드 이미지 CSS
+*/
+
+.mx-auto {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 50%;
+    overflow: hidden;
+}
+
+.mx-auto .img-fluid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-inner {
+    background-color: white;
+}
+
+/*-----------------------------------------------------------------*/
+
+/*
+    슬라이드 양 옆 버튼과 아래 3개 버튼
+*/
+
+.fa-chevron-left::before {
+    content: "/f053";
+    color: black;
+}
+
+.fa-chevron-right::before {
+    content: "/f054";
+    color: black;
+}
+
+#template-mo-zay-hero-carousel .carousel-indicators li {
+    background-color: white;
+}
+
+/*-----------------------------------------------------------------*/
+
+/*
+    공고 목록 테이블
+*/
+.AnmTable {
+    border: 1px solid rgb(143, 143, 143);
+    color: rgb(68, 68, 68);
+    border-collapse: collapse;
+    border-spacing: 200px;
+    width: 1200px;
+    height: 150px;
+    position: relative;
+    left: 50px;
+    border-right: none;
+    border-left: none;
+}
+
+.AnmTitle {
+    position: relative;
+    left: 50px;
+    font-weight: bold;
+}
+
+a:hover {
+    color: rgb(138, 74, 240);
+}
+
+a {
+    color: rgb(68, 68, 68)
+}
+
+.subtitle {
+    border: 1px solid rgb(143, 143, 143);
+    border-right: none;
+    border-left: none;
+    background-color: #212934;
+    color: white;
+}
+
+th {
+    border: 1px solid rgb(143, 143, 143);
+    text-align: center;
+    border-right: none;
+    border-left: none;
+    padding: 10px;
+}
+
+td {
+    border: 1px solid rgb(143, 143, 143);
+    text-align: center;
+    border-right: none;
+    border-left: none;
+    padding: 10px;
+}
+
+/*-----------------------------------------------------------------*/
+
+/*
+    공지 사항 테이블
+*/
+
+.NotTable {
+    border: 1px solid rgb(143, 143, 143);
+    color: rgb(68, 68, 68);
+    border-collapse: collapse;
+    border-spacing: 200px;
+    width: 1200px;
+    height: 150px;
+    position: relative;
+    left: 350px;
+    border-right: none;
+    border-left: none;
+    margin-bottom: 60px;
+}
+
+.NotTitle {
+    position: relative;
+    left: 350px;
+    font-weight: bold;
+}
+
+.subtitle2 {
+    border: 1px solid rgb(143, 143, 143);
+    border-right: none;
+    border-left: none;
+    background-color: #212934;
+    color: white;
+}
+
+.tabletitle {
+    width: 600px;
+}
+

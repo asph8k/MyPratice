@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+
+    <style>
+        .menu { /*메뉴 블록*/
+            width: 1500px;
+            height: 100px;
+            background: rgb(231, 240, 113);
+            text-align: right;
+        }
+
+        .menu > li { /*메뉴 선택 바*/
+            display: inline-block;
+            line-height: 30px;
+            height: 30px;
+            padding-top: 30px;
+            padding-right: 20px;
+        }
+
+        .box { /*상품 소개 블록*/
+            width: 1500px;
+            height: 120px;
+            background: rgb(109, 100, 196);
+            text-align: center;
+            font-weight: bold;
+            font-size: 80px;
+            line-height: 120px;
+            color: azure;
+        }
+
+        section > ol > li > a { /*메뉴 클릭*/
+            color: rgb(8, 9, 10);
+            font-size: 20px;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        h2 {
+            width: 200px;
+            border: 3px solid burlywood;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .intro {
+            border-top: 2px solid burlywood;
+        }
+
+        ul > li > a {
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="box">상 품 소 개</h1>
+
+    <section>
+        <ol class="menu">
+            <li><a href="#">메뉴1</a></li>
+            <li><a href="#">메뉴2</a></li>
+            <li><a href="#">메뉴3</a></li>
+        </ol>
+    </section>
+
+    <section>
+        <h2>제품 소개
+            <ul class="intro">
+                <li><a href="#">1.제품명</a></li>
+                <li><a href="#">2.제품 제작 년도</a></li>
+                <li><a href="#">3.제품 효능</a></li>
+                <li><a href="#">4.제품사용법</a></li>
+                <li><a href="#">5.유통기한</a></li>
+            </ul>
+        </h2>
+    </section>
+    </header>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!--padding은 내부 요소와의 거리를 벌리기 위함-->
+    <!--padding 또한 margin처럼 단축 속성이 비슷하다-->
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background: tomato;
+            border: 10px solid black;
+            padding: 30px;
+
+            /*
+            박스의 크기를 어떤 것을 기준으로 계산할지를 결정.
+            border-box는 테두리(경계선)를 기준으로 크기를 정하고,
+            content-box(default)는 내부 요소를 기준으로 크기를 정한다.
+            padding은 내부 요소와 경계선과의 거리를 벌리는 속성이기 때문에
+            그만큼 박스 크기가 증가한다.
+            */
+            box-sizing: border-box; /*박스의 사이즈를 보더 박스의 사이즈로 하겠다. 대신 안에 컨텐트가 줄어듬*/
+        }
+    </style>
+</head>
+<body>
+    <div class="box">hello world</div>
+</body>
+</html>

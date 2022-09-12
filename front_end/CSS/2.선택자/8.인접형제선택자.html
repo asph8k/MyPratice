@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .orange + li { /*클래스orange의 인접한 다음 li인 요소*/
+            color: yellow;
+        }
+
+        li + li { /*li 다음 li인 요소. 첫번째를 제외한 나머지 li들은 변경. 하지만 이렇게는 잘 안씀*/
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>딸기</li>
+        <li>사과</li>
+        <li class="orange">오렌지</li>
+        <li>망고</li>
+        <li>포도</li>
+    </ul>
+</body>
+</html>

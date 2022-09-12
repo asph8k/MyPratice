@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            margin: 50px;
+            background: red;
+            /* transition-property: width; 전환 효과를 주는 속성. 기본값 : all
+            transition-duration: 2s; 전환효과를 지속시켜주는 속성.transition속성은 마지막으로 설정한 속성만 동작
+            transition-property: background;
+            transition-duration: 700ms; */
+
+            /* transition : 속성, 지속시간, 딜레이, 타이밍함수 <- 단축속성*/
+            /*ease : 처음엔 빠르고 서서히 느려짐. 기본값*/
+            /*ease-in : 느리다가 빨라진다*/
+            /*ease-out : ease보다 조금 빠르고 조금 느리다*/
+            /*ease-in-out : 느리고 빠르고 느려진다.*/
+            /*linear : 처음과 끝이 균일한 속도*/
+            /*cubic-bezier : 타이밍 함수. 직접 원하는 구간에 속도를 조절 할 수 있다.*/
+            transition: 1s linear;
+            /* transition: 1s cubic-bezier(0.36,0,0.66,-0.56); */
+            /* transition-delay: 2s; 2초후에 transition속성이 동작되는 속성*/
+        }
+
+        .box:hover {
+            width: 300px;
+            background: skyblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="box"></div>
+</body>
+</html>

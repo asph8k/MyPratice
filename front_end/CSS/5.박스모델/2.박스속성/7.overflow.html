@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!--overflow : 넘쳐흐르는 것을 잡는 속성-->
+    <style>
+        .parent {
+            width: 300px;
+            height: 250px;
+            border: 4px solid black;
+            overflow: auto; /*hidden : 넘쳐흐르는것을 숨긴다
+                              scroll : 잘려진 것을 볼수 있게 해줌
+                              auto : 자동으로 넘치면 스크롤이 달리고 안넘치면 사라진다(제일 많이쓴다)*/
+        }                   
+
+        .child {
+            width: 100px;
+            height: 200px;
+            background: red;
+            border: 4px solid orange;
+            font-size: 40px;
+        }
+
+        .tx1 {
+            border: 1px solid #777;
+            width: 300px;
+            height: 300px;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <div class="child">1</div>
+        <div class="child">2</div>
+    </div>
+
+    <hr>
+
+    <p class="tx1">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla consequat hendrerit lorem, eget sodales turpis lobortis id. Nunc suscipit hendrerit est non facilisis. Curabitur vitae magna velit. Nunc placerat mi et turpis suscipit lobortis. Curabitur est lorem, sagittis nec molestie vitae, viverra a enim. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce faucibus, odio id dignissim vestibulum, est libero tempor est, quis scelerisque ante lorem at est. Suspendisse a diam lobortis, scelerisque felis ac, congue ex. Aenean in mauris vitae erat tincidunt commodo a sed odio.
+
+Ut in sodales justo. Cras varius lorem vitae pellentesque consequat. Suspendisse sodales vulputate dui, scelerisque fermentum nisi tincidunt ut. Proin eros lacus, faucibus ut urna nec, ullamcorper efficitur diam. Sed blandit quam sem, tempor tincidunt magna laoreet et. Curabitur eu maximus massa, vitae ultrices mauris. Vestibulum ligula risus, tincidunt sit amet lectus sit amet, mattis pulvinar quam. Proin elementum feugiat auctor. Mauris finibus orci ac orci ultricies, ac sagittis nisi dignissim.
+    </p>
+</body>
+</html>

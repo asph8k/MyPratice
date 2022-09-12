@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        input [disabled]{
+            opacity: 0.2; /*opacity : 투명도.*/
+        }
+        
+        input [type=password]{
+            color: red;
+            width: 100px;
+        }
+
+        button[class^="btn-"] { /*버튼 태그인데 클래스가 btn으로 시작한다면*/
+            font-weight: bold;
+            border-radius: 20px;
+        }
+
+        button[class$="success"] { /*버튼 태그인데 클래스가 success로 끝난다면*/
+            background: green;
+        }
+    </style>
+</head>
+<body>
+    <input type="text" value="hello">
+    <input type="password" value="1234">
+    <input type="text" value="disable text" disabled><!--disabled : 사용불가 속성-->
+
+    <button class="btn-success">Success</button>
+    <button class="btn-danger">Danger</button>
+</body>
+</html>

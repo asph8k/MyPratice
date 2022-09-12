@@ -1,0 +1,157 @@
+/*가운데 메인 글 구조*/
+section {
+    width: 400px;
+    background: rgb(214, 214, 214);
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+}
+
+/*피리부는 소년*/
+section .main1 {
+    display: block;
+    padding: 10px;
+}
+
+section .main1 h2 {
+    background: rgb(15, 15, 97);
+    color: white;
+    font-family: sans-serif;
+    padding: 5px;
+}
+
+section .main1 h3 {
+    color: rgb(15, 15, 97);
+    font-family: sans-serif;
+    padding: 10px 0;
+}
+
+section .main1 p {
+    color: rgb(15, 15, 97);
+    font-family: sans-serif;
+}
+
+/*고흐의 방*/
+section .main2 {
+    display: block;
+    padding: 10px;
+}
+
+section .main2 h2 {
+    background: rgb(15, 15, 97);
+    color: white;
+    font-family: sans-serif;
+    padding: 5px;
+}
+
+section .main2 h3 {
+    color: rgb(15, 15, 97);
+    font-family: sans-serif;
+    padding: 10px 0;
+}
+
+section .main2 p {
+    color: rgb(15, 15, 97);
+    font-family: sans-serif;
+}
+
+/*황색 그리스도가 있는 화가의 자화상*/
+section .main3 {
+    display: block;
+    padding: 10px;
+}
+
+section .main3 h2 {
+    background: rgb(15, 15, 97);
+    color: white;
+    font-family: sans-serif;
+    padding: 5px;
+}
+
+section .main3 h3 {
+    color: rgb(15, 15, 97);
+    font-family: sans-serif;
+    padding: 10px 0;
+}
+
+section .main3 p {
+    color: rgb(15, 15, 97);
+    font-family: sans-serif;
+}
+
+/*오페라좌의 관현악단*/
+section .main4 {
+    display: block;
+    padding: 10px;
+}
+
+section .main4 h2 {
+    background: rgb(15, 15, 97);
+    color: white;
+    font-family: sans-serif;
+    padding: 5px;
+}
+
+section .main4 h3 {
+    color: rgb(15, 15, 97);
+    font-family: sans-serif;
+    padding: 10px 0;
+}
+
+section .main4 p {
+    color: rgb(15, 15, 97);
+    font-family: sans-serif;
+}
+
+/*만종*/
+section .main5 {
+    display: block;
+    padding: 10px;
+}
+
+section .main5 h2 {
+    background: rgb(15, 15, 97);
+    color: white;
+    font-family: sans-serif;
+    padding: 5px;
+}
+
+section .main5 h3 {
+    color: rgb(15, 15, 97);
+    font-family: sans-serif;
+    padding: 10px 0;
+}
+
+section .main5 p {
+    color: rgb(15, 15, 97);
+    font-family: sans-serif;
+}
+
+/*제비꽃 장식을 단 베르트 모리조*/
+section .main6 {
+    display: block;
+    padding: 10px;
+}
+
+section .main6 h2 {
+    background: rgb(15, 15, 97);
+    color: white;
+    font-family: sans-serif;
+    padding: 5px;
+}
+
+section .main6 h3 {
+    color: rgb(15, 15, 97);
+    font-family: sans-serif;
+    padding: 10px 0;
+}
+
+section .main6 p {
+    color: rgb(15, 15, 97);
+    font-family: sans-serif;
+}
+
+/*작품명에 마우스를 올릴 시 밑줄 효과*/
+section article h2 a:hover {
+    text-decoration: underline;
+}

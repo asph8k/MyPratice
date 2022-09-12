@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .box {
+            width: 550px;
+            height: 350px;
+            border: 2px solid gray;
+
+            /* background-color: yellow;
+            background-image: url(./images/sky.jpg); */
+            /* 박스의 가로비율과 이미지 사이즈가 맞게 해줌. 가로비율에 맞게 하다보니 이미지가 잘릴수 있다.
+            background-size: cover; */
+            /*background-size: contain; 이미지 잘리진 않는데 빈공간이 생긴다 */
+            /* background-size: auto;
+            background-repeat: no-repeat;반복 안해주는 속성 */
+            /* background-repeat: repeat-x; 가로반복 */
+            /* background-repeat: repeat-y; 세로 반복*/
+
+            /*0,0 = 좌측 상단 모서리 부터, 100,100 = 우측 하단 모서리 부터*/
+            
+            /* %, px, em으로 지정이 가능.
+              가로축과 세로축을 한번에 지정 가능.
+              가로축만 사용하면 세로축은 가운데 정렬.
+              % -> 왼쪽 상단 0% 0%, 오른쪽 하단이 100% 100% */
+            /* background-position: 80% 70%; */
+
+            /*단축 속성  : 색상 , 이미지 경로 , 반복여부 , 포지션 , 이미지 사이즈*/
+            background: yellow url(./images/sky.jpg) no-repeat 0% 0% / cover;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="box"></div>
+    
+</body>
+</html>

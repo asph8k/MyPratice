@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+
+        var cCount = 0, iCount = 0; //정답횟수와 오답횟수를 구하기 위해 변수 선언
+
+        while(true) {
+            var rn1 = Math.floor(Math.random() * 20) + 1; //1~20까지의 난수 구하기
+            var rn2 = Math.floor(Math.random() * 20) + 1; 
+
+            //부호를 결정하기 위해 0 1 2 의 랜덤 정수 생성 //+ , - , * 연산자를 정수로 하여 랜덤하게 생성
+            var rn3 = Math.floor(Math.random() * 3);
+
+            var real_answer;
+            var operator_mark;
+            if(rn3 === 0) { // 연산자를 랜덤하게 생성하게 해주는 조건문
+                operator_mark = '+';
+                real_answer = rn1 + rn2;
+            } else if(rn3 === 1) {
+                operator_mark = '-';
+                real_answer = rn1 - rn2;
+            } else {
+                operator_mark = 'x';
+                real_answer = rn1 * rn2;
+            }
+
+            var answer = prompt(`${rn1} ${operator_mark} ${rn2} = ???`); //입력창에 그만 이라는 문자열을 입력 받아야 하기 때문에 prompt에 +를 붙이진 않는다.
+
+            if(answer === '그만') { //사용자가 그만을 입력하면 종료.
+                break;
+            }
+
+            if(answer == real_answer) { 
+                alert('정답입니다.');
+                cCount++;
+            } else {
+                alert('오답입니다.');
+                iCount++;
+            }
+
+        }
+
+        alert(`프로그램이 종료되었습니다.
+        # 정답 횟수 : ${cCount}회, 오답 횟수 : ${iCount}`);
+
+    </script>
+
+</body>
+</html>

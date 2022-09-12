@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+
+        //논리 타입
+        var logical = false;
+        logical = true;
+
+        //0은 false로, 0이 아닌 나머지 정수는 true로 해석 가능.
+        var apple = 0; 
+        if(apple) {//자바에서는 if문에 숫자타입을 넣을순 없지만 js는 가능하다. 0이 false고 나머지 숫자들은 true이다.
+            console.log('사과가 ' + apple + '개 있습니다.');
+        } else {
+            console.log('사과가 하나도 없습니다.');
+        }
+
+        //NULL이 나오는 경우 //기존의 값을 가지고 있다가 무언가에 의해서 지워진 것
+        var banana = '바나나';
+        banana = null;
+        console.log(typeof banana); //typeof : 타입이 무엇인지 확인
+        console.log(banana);
+
+        //undefined : 선언된 적 자체가 없는 것. 값이 아예 들어가지 않음.
+        var i;
+        console.log(typeof i);
+
+    </script>
+
+</body>
+</html>

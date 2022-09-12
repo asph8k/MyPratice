@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--autocomplete : 자동 완성-->
+    <!--required : 필수 요구 사항-->
+    <!--action : 전송할 정보를 처리할 페이지의 URL-->
+    <form action="#" method="post" autocomplete="off">
+        아이디 입력:<input type="text" name="id" value="아웅"> <br>
+        비밀번호 :<input type="password" name="pw" required> <br>
+
+        <!--다중 선택은 name은 똑같아야하지만 구분을 해주기 위해 value로 구별을 해줘야한다-->
+        <!--남,여 인지 파악 type과 name을 똑같아야한다-->
+        # 성별 <br>
+        <input type="radio" name="gender" value="male"> 남
+        <input type="radio" name="gender" value="female"> 여 <br>
+
+        <!--여러개를 클릭할 수 있는 역할-->
+        # 취미 <br>
+        <input type="checkbox" name="hobby" value="read"> 독서
+        <input type="checkbox" name="hobby" value="sleep"> 수면
+        <input type="checkbox" name="hobby" value="music"> 음악
+        <input type="checkbox" name="hobby" value="game"> 게임 <br>
+
+        # 자기소개 <br>
+        <textarea name="introduce" cols="30" rows="10"></textarea> <br>
+
+        <!--이메일 입력 받는 역할 placeholder : 가이드라인-->
+        <input type="email" name="mail" placeholder="이메일을 입력하세요"> <br>
+
+        <!--파일을 선택-->
+        <input type="file" name="upload"> <br>
+
+        <!--나이 입력-->
+        <input type="number" name="age" min="1" max="200" placeholder="나이를 입력하세요"> <br>
+
+        <!--value는 기본값 지정 예)아이디 기억-->
+        <!--그래프 입력 역할-->
+        <input type="range" min="0" max="10" step="1" value="3"> <br>
+
+        <!--전송 버튼 설정-->
+        <input type="submit" value="전송">
+    </form>
+</body>
+</html>

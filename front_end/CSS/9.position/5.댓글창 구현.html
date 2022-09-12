@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+    <title>Document</title>
+
+    <style>
+        .list-wrap {
+            width: 50%;
+            border: 1px solid black;
+            margin: 20px auto 0;
+            padding: 10px;
+            position: relative;
+        }
+
+        .list-img {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .list-img img {
+            width: 50px;
+        }
+
+        .list-content {
+            padding-left: 60px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            resize: none; /*textarea를 못움직이기게 해주는 속성*/
+        }
+
+        .list-control {
+            padding-left: 60px;
+        }
+
+        .list-input {
+            float: left;
+        }
+
+        input {
+            display: block;
+            width: 100px;
+        }
+
+        button { /*인라인 요소에 float을 적용하면 블록 요소로 변경되어
+                    float이 적용된다.*/
+            float: right;
+        }
+
+        .clearfix::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .list-box {
+            width: 50%;
+            height: 75px;
+            border: 1px solid black;
+            margin: 10px auto 0;
+            padding: 10px;
+            position: relative;
+        }
+
+        .list-img2 {
+            position: absolute;
+            left: 10px;
+            top: 10px;
+        }
+
+        .list-img2 img{
+            width: 50px;
+        }
+
+        .list-text {
+            padding-left: 60px;
+        }
+
+        .list-text p {
+            line-height: 25px;
+            font-size: 20px;
+        }
+
+        #tx1 {
+            font-weight: bold;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="list-wrap clearfix">
+        <div class="list-img">
+            <img src="./img/KakaoTalk_20220414_143921441.png" alt="pic">
+        </div>
+        <div class="list-content">
+            <textarea rows="10" placeholder="댓글내용"></textarea>
+        </div>
+        <div class="list-control">
+            <div class="list-input">
+                <input type="text">
+                <input type="text">
+            </div>
+            <button type="button">등록하기</button>
+        </div>
+    </div>
+<section>
+    <div class="list-box">
+        <div class="list-img2">
+            <img src="./img/KakaoTalk_20220414_143921441.png" alt="pic">
+        </div>
+        <div class="list-text">
+            <p id="tx1">제목</p>
+            <p>내용</p>
+        </div>
+        <button type="button">삭제</button>
+        <button type="button">수정</button>
+    </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+            .container {
+            width: 400px;
+            height: 200px;
+            border: 4px solid red;
+            margin-left: 200px;
+            margin-top: 100px;
+        }
+
+        .box1 {
+            width: 100px;
+            height: 100px;
+            border: 4px solid blue;
+            margin-top: 20px;
+            margin-left: 50%;
+        }
+
+        .box2 {
+            width: 100px;
+            height: 100px;
+            border: 4px solid #000;
+        }
+
+        .outer {
+            background: red;
+            height: 100px;
+        }
+
+        .inner {
+            /*margin : 박스의 위,아래,오른쪽,왼쪽의 여백 설정. 박스간의 사이 벌리기. 특정 요소들의 사이 벌리기*/
+            width: 70%; /*outer의 100px에서 70퍼센트를 가진다*/
+            height: 100px;
+            background: blue;
+
+            /*
+            단축 속성 사용 시
+            margin : 위 오른쪽 아래 왼쪽 (시계방향) -> 값 4개를 주면 앞에 순서처럼 간다
+            margin : 위 [좌우] 아래 -> 값 3개를 줄시
+            margin : [상하] [좌우] -> 값 2개
+            margin : [상하좌우] -> 값 1개
+            단축속성 사용이 아닐시에는 직접 margin의 방향을 결정해서 여백을 결정한다
+            */
+            /*margin: 100px 200px; /*margin: 200px; : 박스의 상하좌우 다 200씩 밀려남 
+                                   margin: 100px 200px; : 앞에 있는게 상하 이고 뒤에가 좌우*/
+            margin: 0 auto; /* [상하]는 0 [좌우]는 자동. 바깥쪽에 있는 박스를 기준으로 안에 있는 박스를 가운데로 지정하고 싶을때*/
+        }
+    </style>
+</head>
+<body>
+    <div class="outer">
+        <div class="inner"></div>
+    </div>
+
+    <div class="container">
+        <div class="box1"></div>
+        <div class="box2"></div>
+    </div>
+</body>
+</html>
