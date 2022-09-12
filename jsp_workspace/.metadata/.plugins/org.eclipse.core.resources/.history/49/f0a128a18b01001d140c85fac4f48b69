@@ -1,0 +1,16 @@
+package prefix_sum;
+
+public class 구간_합_구하기02 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int N = 4; // 4 x 4
+		int[][] A = { // 2차원 배열 선언
+				{1, 2, 3, 4},
+				{2, 3, 4, 5},
+				{3, 4, 5, 6},
+				{4, 5, 6, 7}
+		};
+	}
+
+}

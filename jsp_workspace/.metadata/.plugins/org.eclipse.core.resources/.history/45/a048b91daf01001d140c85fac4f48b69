@@ -1,0 +1,10 @@
+package merge;
+
+public class merge_quiz {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

@@ -1,0 +1,14 @@
+package insertion;
+
+import java.util.Scanner;
+
+public class 삽입정렬_문제01 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		System.out.println("사람 수: ");
+		int N = sc.nextInt();
+	}
+
+}

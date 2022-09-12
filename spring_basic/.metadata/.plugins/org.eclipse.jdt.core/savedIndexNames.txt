@@ -1,0 +1,27 @@
+INDEX VERSION 1.131+C:\Users\User\Desktop\java_web_RKP\spring_basic\.metadata\.plugins\org.eclipse.jdt.core
+117848842.index
+2706790346.index
+2631265121.index
+4010104106.index
+3006375662.index
+2749805555.index
+1317156132.index
+1829277451.index
+457993180.index
+2725511845.index
+1778357685.index
+3244105954.index
+31586738.index
+988102679.index
+1035390376.index
+1230850708.index
+1230374818.index
+1957842149.index
+3146266896.index
+4100581310.index
+3754977224.index
+2306585673.index
+1450131044.index
+3843241582.index
+2956475831.index
+520641427.index

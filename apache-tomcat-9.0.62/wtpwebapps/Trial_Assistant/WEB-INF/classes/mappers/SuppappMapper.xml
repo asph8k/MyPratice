@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.spring.pr.suppapp.mapper.ISuppappMapper">
+	<resultMap type="com.spring.pr.command.TotalApplierVO" id="TotalApplierMap">
+		<id column="APP_NUM_SEQ" property="AppNum"/>
+		<result column="JOINID" property="JoinId"/>
+		<result column="APP_NAME" property="AppName"/>
+		<result column="APP_CLASSIFICATION" property="AppClassification"/>
+		<result column="APP_DATE" property="AppDate"/>
+		<result column="APP_WHTR_INGB" property="AppWhtrIngb"/>	
+		<result column="APP_MEMO" property="AppMemo"/>	
+	</resultMap>
+	
+	<resultMap type="com.spring.pr.command.InsttVO" id="InsttMap">
+		<id column="APP_NUM_SEQ" property="AppNum"/>
+		<id column="INSTT_NUM_SEQ" property="InsttNum"/>
+		<result column="INSTT_NAME" property="InsttName"/>
+		<result column="INSTT_OFC_NAME" property="InsttOfcName"/>
+		<result column="INSTT_YEAR" property="InsttYear"/>
+		<result column="INSTT_SRTTN" property="InsttSrttn"/>
+		<result column="INSTT_DTL_SRTTN" property="InsttDtlSrttn"/>
+		<result column="INSTT_SOC_NUM" property="InsttSocNum"/>
+		<result column="INSTT_BSNS_NUM" property="InsttBsnsNum"/>
+		<result column="INSTT_JOB" property="InsttJob"/>
+		<result column="INSTT_FAX" property="InsttFax"/>
+		<result column="INSTT_HOME_NUM" property="InsttHomeNum"/>
+		<result column="INSTT_ACAD_BACK" property="InsttAcadBack"/>
+		<result column="INSTT_ACAD_BACK_FILE" property="InsttAcadBakFile"/>
+		<result column="INSTT_CARRER" property="InsttCarrer"/>
+		<result column="INSTT_CARRER_FILE" property="InsttCarrerBack"/>
+		<result column="INSTT_EMAIL" property="InsttEmail"/>
+		<result column="INSTT_PHONE_NUM" property="InsttPhoneNum"/>
+		<result column="INSTT_BANK" property="InsttBank"/>
+		<result column="INSTT_ACC_HOL" property="InsttAccHol"/>
+		<result column="INSTT_BANK_NUM" property="InsttBankNum"/>
+		<result column="INSTT_POST_NUM" property="InsttPostNum"/>
+		<result column="INSTT_ADDR" property="InsttAddr"/>
+		<result column="INSTT_DTL_ADDR" property="InsttDtlAddr"/>
+		<result column="JOINID" property="JoinId"/>
+		<result column="InsttSupappMemo" property="InsttSupAppMemo"/>
+	</resultMap>
+	
+	<resultMap type="com.spring.pr.command.TsVO" id="TsMap">
+		<id column="TS_NUM_SEQ" property="TsNum"/>
+		<id column="APP_NUM_SEQ" property="AppNum"/>
+		<result column="TS_NAME" property="TsName"/>
+		<result column="TS_SOC_NUM" property="TsSocNum"/>
+		<result column="TS_HOME_NUM" property="TsHomeNum"/>
+		<result column="TS_ACAD_BACK" property="TsAcadBack"/>
+		<result column="TS_ACAD_BACK_FILE" property="TsAcadBackFile"/>
+		<result column="TS_CARRER" property="TsCarrer"/>
+		<result column="TS_CARRER_FILE" property="TsCarrerFile"/>
+		<result column="TS_EMAIL" property="TsEmail"/>
+		<result column="TS_PHONE_NUM" property="TsPhoneNum"/>
+		<result column="TS_BANK" property="TsBank"/>
+		<result column="TS_ACC_HOL" property="TsAccHol"/>
+		<result column="TS_BANK_NUM" property="TsBankNum"/>
+		<result column="TS_POST_NUM" property="TsPostNum"/>
+		<result column="TS_ADDR" property="TsAddr"/>
+		<result column="TS_DTL_ADDR" property="TsDtlAddr"/>
+		<result column="TS_EXPRT" property="TsExprt"/>
+		<result column="TS_LNGG" property="TsLngg"/>
+		<result column="TS_DSG_CRT" property="TsDsgCrt"/>
+		<result column="TS_ACTIVE_AREA" property="TsActiveArea"/>
+		<result column="TS_DSGNT_COURT" property="TsDsgntCourt"/>
+		<result column="TS_ACTVT_AREA" property="TsActvtArea"/>
+		<result column="JOINID" property="JoinId"/>
+		<result column="TsSupappMemo" property="TsSupAppMemo"/>
+		<result column="TS_YEAR" property="TsYear"/>
+		<result column="TS_SRTTN" property="TsSrttn"/>
+		<result column="TS_DTL_SRTTN" property="TsDtlSrttn"/>
+	</resultMap>
+	
+	<resultMap type="com.spring.pr.command.GhVO" id="GhMap">
+		<id column="GH_NUM_SEQ" property="GhNum"/>
+		<id column="APP_NUM_SEQ" property="AppNum"/>
+		<result column="GH_NAME" property="GhName"/>
+		<result column="GH_OFC_NAME" property="GhOfcName"/>
+		<result column="GH_OFC_NUM" property="GhOfcNum"/>
+		<result column="GH_YEAR" property="GhYear"/>
+		<result column="GH_SRTTN" property="GhSrttn"/>
+		<result column="GH_SOC_NUM" property="GhSocNum"/>
+		<result column="GH_BSNS_NUM" property="GhBsnsNum"/>
+		<result column="GH_JOB" property="GhJob"/>
+		<result column="GH_FAX" property="GhFax"/>
+		<result column="GH_HOME_NUM" property="GhHomeNum"/>
+		<result column="GH_ACAD_BACK" property="GhAcadBack"/>
+		<result column="GH_ACAD_BACK_FILE" property="GhAcadBackFile"/>
+		<result column="GH_CARRER" property="GhCarrer"/>
+		<result column="GH_CARRER_FILE" property="GhCarrerFile"/>
+		<result column="GH_EMAIL" property="GhEmail"/>
+		<result column="GH_PHONE_NUM" property="GhPhoneNum"/>
+		<result column="GH_BANK" property="GhBank"/>
+		<result column="GH_ACC_HOL" property="GhAccHol"/>
+		<result column="GH_BANK_NUM" property="GhBankNum"/>
+		<result column="GH_POST_NUM" property="GhPostNum"/>
+		<result column="GH_PSTL_CODE" property="GhPstlCode"/>
+		<result column="GH_ADDR" property="GhAddr"/>
+		<result column="GH_DTL_ADDR" property="GhDtlAddr"/>
+		<result column="JOINID" property="JoinId"/>
+		<result column="GH_DTL_SRTTN" property="GhDtlSrttn"/>
+		<result column="GhSupappMemo" property="GhSupAppMemo"/>
+	</resultMap>
+	
+	<sql id="search">
+		WHERE APP_CLASSIFICATION = #{condition}
+	   	<if test="keyword != null and keyword != ''"> 		
+	   		AND APP_NAME LIKE '%'||#{keyword}||'%'
+	   	</if>	   	
+   	</sql>
+	
+	<select id="getSuppappList" resultMap="TotalApplierMap">
+		SELECT * FROM
+				(
+				SELECT ROWNUM AS rn, tbl.*FROM
+					(
+						SELECT APP_NUM_SEQ, APP_NAME, JOINID, APP_CLASSIFICATION, APP_DATE
+						FROM totalapplier
+						<include refid="search"/>
+						ORDER BY APP_NUM_SEQ ASC
+					)tbl
+				)
+			<![CDATA[
+		      WHERE rn > (#{pageNum}-1) * #{cpp}
+		      AND rn <= #{pageNum} * #{cpp}
+		    	]]>
+	</select>
+	
+	<select id="getSuppappTotal" resultType="int">
+		SELECT COUNT(*) FROM Totalapplier
+	</select>
+	
+	<select id="getInsttSuppappContent" resultMap="InsttMap">
+		SELECT it.instt_name, ta.joinid, it.instt_soc_num, it.instt_home_num, it.instt_phone_num, it.instt_email,
+	        it.instt_job, it.instt_fax, it.instt_bank, it.instt_acc_hol, it.instt_bank_num,
+	        it.instt_srttn, it.instt_dtl_srttn, it.instt_year,
+	        it.instt_bsns_num, it.instt_ofc_name, it.instt_num_seq,
+	        it.instt_acad_back, it.instt_acad_back_file, it.instt_carrer, it.instt_carrer_file,
+	        it.instt_addr, it.instt_dtl_addr, it.instt_post_num, it.InsttSupappMemo, it.APP_NUM_SEQ
+		FROM Totalapplier ta INNER JOIN Instt it 
+		    ON ta.JOINID = it.JOINID
+		WHERE ta.APP_NUM_SEQ = #{AppNum}
+	</select>
+	
+	<select id="getTsSuppappContent" resultMap="TsMap">
+		SELECT ts.ts_name, ta.joinid, ts.ts_soc_num, ts.ts_home_num, ts.ts_phone_num, ts.ts_email,
+	        ts.ts_bank, ts.ts_acc_hol, ts.ts_bank_num, ts.ts_exprt, ts.ts_lngg, ts.ts_dsg_crt, ts.ts_active_area,
+	        ts.ts_acad_back, ts.ts_acad_back_file, ts.ts_carrer, ts.ts_carrer_file, 
+	        ts.ts_addr, ts.ts_dtl_addr, ts.ts_post_num, ts.TsSupappMemo, ts.APP_NUM_SEQ, ts.ts_srttn, ts.ts_year, ts.ts_dtl_srttn
+		FROM Totalapplier ta INNER JOIN Ts ts
+		    ON ta.JOINID = ts.JOINID
+		WHERE ta.APP_NUM_SEQ = #{AppNum}
+	</select>
+	
+	<select id="getGhSuppappContent" resultMap="GhMap">
+		SELECT gh.gh_name, ta.joinid, gh.gh_soc_num, gh.gh_home_num, gh.gh_phone_num, gh.gh_email,
+	        gh.gh_job, gh.gh_fax, gh.gh_bank, gh.gh_acc_hol, gh.gh_bank_num,
+	        gh.gh_srttn, gh.gh_year, gh.gh_bsns_num, gh.gh_ofc_num, gh.gh_ofc_name,
+	        gh.gh_acad_back, gh.gh_acad_back_file, gh.gh_carrer, gh.gh_carrer_file,
+	        gh.gh_addr, gh.gh_dtl_addr, gh.gh_post_num, gh.GhSupappMemo, gh.APP_NUM_SEQ, gh.gh_dtl_srttn, gh.gh_num_seq
+		FROM Totalapplier ta INNER JOIN Gh gh
+		    ON ta.JOINID = gh.JOINID
+		WHERE ta.APP_NUM_SEQ = #{AppNum}
+	</select>
+	
+	<update id="updateInsttSuppapp">
+		UPDATE Instt SET
+			InsttSupappMemo = #{InsttSupAppMemo}
+		WHERE INSTT_NUM_SEQ = #{InsttNum}
+	</update>
+	
+	<update id="updateTsSuppapp">
+		UPDATE Ts SET 
+			TsSupappMemo = #{TsSupAppMemo}
+		WHERE TS_NUM_SEQ = #{TsNum}
+	</update>
+	
+	<update id="updateGhSuppapp">
+		UPDATE Gh SET
+			GhSupappMemo = #{GhSupAppMemo}
+		WHERE GH_NUM_SEQ = #{GhNum}
+	</update>
+	
+	<delete id="deleteSuppapp">
+		DELETE FROM totalapplier
+		WHERE app_num_seq = #{AppNum}
+	</delete>
+	
+</mapper>

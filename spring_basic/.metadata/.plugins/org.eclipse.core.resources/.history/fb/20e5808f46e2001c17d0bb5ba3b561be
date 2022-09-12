@@ -1,0 +1,9 @@
+package basic.ex01;
+
+public class Chef {
+
+	public Chef() {
+		System.out.println("요리사가 생성됨!");
+	}
+	
+}

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.pr.instt.mapper.IInsttMapper">
+	<!-- namespace는 어떤 interface를 참조하는지 지정  -->
+	
+	
+	<!--VO객체이름과 DB의 컬럼명이 다를 때 맞춰주는 작업  -->
+	<resultMap type="com.spring.pr.command.InsttVO" id="InsttMap">
+		<!-- 기본키는 id 태그를 사용하고 나머지는 result 태그를 사용 -->
+		<id column = "INSTT_NUM_SEQ" property="InsttNum"/>
+		
+		<result column ="INSTT_NAME" property = "InsttName"/>
+		<result column ="INSTT_SOC_NUM" property = "InsttSocNum"/>
+		<result column ="INSTT_HOME_NUM" property = "InsttHomeNum"/>
+		<result column ="INSTT_PHONE_NUM" property = "InsttPhoneNum"/>
+		<result column ="INSTT_JOB" property = "InsttJob"/>
+		<result column ="INSTT_EMAIL" property = "InsttEmail"/>
+		<result column ="INSTT_SRTTN" property = "InsttSrttn"/>
+		<result column ="INSTT_DTL_SRTTN" property = "InsttDtlSrttn"/>
+		<result column ="INSTT_YEAR" property = "Instt_Year"/>
+		<result column ="INSTT_BSNS_NUM" property = "InsttBsnsNum"/>
+		<result column ="INSTT_FAX" property = "InsttFax"/>	
+		<result column ="INSTT_OFC_NAME" property = "InsttOfcName"/>
+		<result column ="INSTT_OFC_NUM" property = "InsttOfcNum"/>
+		<result column ="INSTT_ACAD_BACK" property = "InsttAcadBack"/>
+		<result column ="INSTT_CARRER" property = "InsttCarrer"/>
+		
+		<result column="INSTT_TOTAL_FILE" property="INSTTTotalFile" />
+		<result column="INSTT_TOTAL_FILE_REAL" property="INSTTTotalFileReal" />
+
+		<result column ="INSTT_BANK" property = "InsttBank"/>
+		<result column ="INSTT_ACC_HOL" property = "InsttAccHol"/>
+		<result column ="INSTT_BANK_NUM" property = "InsttBankNum"/>
+		<result column ="INSTT_POST_NUM" property = "InsttPostNum"/>
+		<result column ="INSTT_ADDR" property = "InsttAddr"/>
+		<result column ="INSTT_DTL_ADDR" property = "InsttDtlAddr"/>
+		<result column ="APP_NUM_SEQ" property = "AppNumSeq"/>
+		<result column ="JOINID" property = "JoinId"/>
+		<result column ="ANN_NUM" property="annNum" />
+		
+
+	</resultMap>
+	
+	<insert id="regist">
+		INSERT INTO INSTT(INSTT_NUM_SEQ, INSTT_NAME, INSTT_SOC_NUM, INSTT_HOME_NUM, INSTT_PHONE_NUM, INSTT_JOB, INSTT_EMAIL, INSTT_SRTTN, INSTT_DTL_SRTTN,
+							INSTT_BSNS_NUM, INSTT_FAX, INSTT_OFC_NAME, INSTT_ACAD_BACK, INSTT_CARRER, INSTTTotalFile, INSTTTotalFileReal INSTT_BANK, INSTT_ACC_HOL, INSTT_BANK_NUM, INSTT_POST_NUM, INSTT_ADDR, INSTT_DTL_ADDR, JOINID, ANN_NUM )
+					
+		VALUES(INSTT_NUM_SEQ_NAME.NEXTVAL, #{InsttName}, #{InsttSocNum}, #{InsttHomeNum}, #{InsttPhoneNum}, #{InsttJob}, #{InsttEmail},
+				#{InsttSrttn}, #{InsttDtlSrttn}, #{InsttBsnsNum}, #{InsttFax}, #{InsttOfcName}, #{InsttAcadBack},  #{InsttCarrer},
+				#{INSTTTotalFile}, #{INSTTTotalFileReal},  #{InsttBank}, #{InsttAccHol}, #{InsttBankNum}, #{InsttPostNum}, #{InsttAddr}, #{InsttDtlAddr}, #{JoinId}, #{annNum})
+				<!-- 전체 신청자 테이블과 연동할 수 있도록 전체 신청번호도 넣기 -->
+	</insert>
+	
+	<select id ="getList" resultMap="InsttMap">
+	
+		SELECT * FROM INSTT
+	
+	</select>
+	
+	<select id="getTotal" resultType="int">
+	
+		select count(*) from INSTT
+	
+	</select>
+	
+	<select id = "getContent" resultMap="InsttMap">
+		select * from INSTT where INSTT_NUM_SEQ = #{InsttNum}
+	</select>
+	
+	<update id="update">
+		
+		UPDATE INSTT SET INSTT_NAME = #{InsttName}, INSTT_SOC_NUM = #{InsttSocNum}, INSTT_HOME_NUM = #{InsttHomeNum}, INSTT_PHONE_NUM = #{InsttPhoneNum}, INSTT_JOB = #{InsttJob}, INSTT_EMAIL = #{InsttEmail},
+		 INSTT_SRTTN = #{InsttSrttn}, INSTT_DTL_SRTTN = #{InsttDtlSrttn}, INSTT_BSNS_NUM = #{InsttBsnsNum}, INSTT_FAX = #{InsttFax}, INSTT_OFC_NAME = #{InsttOfcName}, INSTT_ACAD_BACK = #{InsttAcadBack}, INSTT_ACAD_BACK_FILE = #{InsttAcadBackFile},
+		  INSTT_ACAD_BACK_FILE_REAL = #{InsttAcadBackFileReal}, INSTT_CARRER = #{InsttCarrer}, INSTT_CARRER_FILE = #{InsttCarrerFile}, INSTT_CARRER_FILE_REAL = #{InsttCarrerFileReal}, INSTT_BANK = #{InsttBank}, INSTT_ACC_HOL = #{InsttAccHol}, INSTT_BANK_NUM = #{InsttBankNum}, INSTT_POST_NUM = #{InsttPostNum}, INSTT_ADDR = #{InsttAddr}, Instt_DTL_ADDR = #{InsttDtlAddr}
+		 
+		where INSTT_NUM_SEQ = #{InsttNum}
+		
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM INSTT WHERE INSTT_NUM_SEQ = #{InsttNum}
+	</delete>
+	
+	<select id="insttRegistCheck" resultType="int">
+		SELECT COUNT(*) FROM INS
+		WHERE
+		INS_NUM = #{num}
+	</select>
+
+	</mapper>

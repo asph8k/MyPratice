@@ -1,0 +1,48 @@
+package basic.quiz;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+public class Computer {
+
+	
+	@Autowired
+	private Keyboard keyboard;
+	
+	@Autowired
+	private Mouse mouse;
+	
+	@Autowired
+	private Moniter moniter;
+	
+	public void computerInfo() {
+		System.out.println("*** 컴퓨터의 정보 ***");
+		keyboard.info();
+		mouse.info();
+		moniter.info();
+	}
+	
+	
+	//이렇게 써도 가능.
+	/*
+	private Keyboard keyboard;
+	
+	private Mouse mouse;
+	
+	private Moniter moniter;
+		
+	@Autowired
+	public Computer(Keyboard keyboard, Mouse mouse, Moniter moniter) {
+		super();
+		this.keyboard = keyboard;
+		this.mouse = mouse;
+		this.moniter = moniter;
+	}
+
+	public void computerInfo() {
+		System.out.println("*** 컴퓨터의 정보 ***");
+		keyboard.info();
+		mouse.info();
+		moniter.info();
+	}
+	*/
+}

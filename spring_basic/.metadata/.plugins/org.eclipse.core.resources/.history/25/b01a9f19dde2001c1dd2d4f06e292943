@@ -1,0 +1,10 @@
+package basic.ex04;
+
+public class Printer {
+
+	private Paper paper;
+	
+	public void showPaperInfo() {
+		
+	}
+}

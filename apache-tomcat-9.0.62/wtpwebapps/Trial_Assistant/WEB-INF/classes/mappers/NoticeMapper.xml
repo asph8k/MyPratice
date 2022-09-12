@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.pr.notice.mapper.INoticeMapper">
+	<!-- namespace는 어떤 interface를 참조하는지 지정  -->
+	
+	
+	<!--VO객체이름과 DB의 컬럼명이 다를 때 맞춰주는 작업  -->
+	<resultMap type="com.spring.pr.command.NoticeVO" id="NoticeMap">
+		<!-- 기본키는 id 태그를 사용하고 나머지는 result 태그를 사용 -->
+		<id column = "NOTICE_NUMBER_SEQ" property="NoticeNum"/>
+		
+		<result column ="NOTICE_TITLE" property = "NoticeTitle"/>
+		<result column ="NOTICE_WRITER" property = "NoticeWriter"/>
+		<result column ="NOTICE_CONTENT" property = "NoticeContent"/>
+		<result column ="NOTICE_DATE" property = "NoticeDate"/>
+		<result column ="NOTICE_FILES" property = "NoticeFile"/>
+		<result column ="NOTICE_HITS" property = "NoticeHits"/>
+		<result column ="MNGR_ID" property = "MNGRID"/>
+		<result column ="NOTICE_FILE_REAL" property = "NoticeFileReal"/>
+		
+
+	</resultMap>
+	
+	<!-- 이거 condition이 title과 content 어디서 나오는지 확인 해보기  -->
+	<sql id="search">
+		
+ 		<if test="condition == 'title'">
+		
+			WHERE NOTICE_TITLE LIKE '%'||#{keyword}||'%'
+		
+		</if> 
+				
+		<if test="condition == 'content'">
+		
+			WHERE NOTICE_CONTENT LIKE '%'||#{keyword}||'%'
+		
+		</if> 
+		
+		<!-- <if test="condition == writer">
+		
+			WHERE NOTICE_CONTENT LIKE '%'||#{keyword}||'%'
+		
+		</if>
+		공지사항에는 작성자가 관리자만 가능하기 때문에 작성할 필요 없음  -->
+	
+	</sql> 
+	
+
+	
+	
+	<insert id="regist">
+		INSERT INTO 
+		Notice(NOTICE_NUMBER_SEQ, NOTICE_TITLE, NOTICE_WRITER, NOTICE_CONTENT,
+			   NOTICE_FILES, NOTICE_HITS, MNGR_ID, NOTICE_FILE_REAL)
+	    VALUES(NOTICE_NUMBER_SEQ_NAME.NEXTVAL, #{NoticeTitle}, #{NoticeWriter}, #{NoticeContent}, #{NoticeFile}, #{NoticeHits}, #{MNGRID},  #{NoticeFileReal}) 
+	</insert>
+	
+	<select id ="getList" resultMap="NoticeMap">
+	
+		<!-- select * from notice order by notice_NUMBER_SEQ DESC -->
+		
+		SELECT * FROM 
+		(SELECT ROWNUM as rn, tbl.* FROM 
+    		(SELECT NOTICE_NUMBER_SEQ, NOTICE_TITLE, NOTICE_WRITER, NOTICE_DATE, NOTICE_HITS FROM Notice 
+    		<include refid="search"/>
+    		ORDER BY NOTICE_NUMBER_SEQ DESC) tbl )
+    		<![CDATA[ 
+		WHERE rn > (#{pageNum} -1 ) * #{cpp}
+		AND rn <= #{pageNum} * #{cpp}
+		]]>  
+		
+	</select>
+	
+	<select id="getTotal" resultType="int">
+	
+		select count(*) from Notice
+<!-- 		<include refid="search"/>
+ -->	
+	</select>
+	
+	<select id = "getContent" resultMap="NoticeMap">
+		select * from Notice where Notice_NUMBER_SEQ = #{NoticeNum}
+	</select>
+	
+	<update id="update" >
+		
+		update Notice SET NOTICE_TITLE = #{NoticeTitle}, NOTICE_Content = #{NoticeContent}, NOTICE_FILES = #{NoticeFile}, NOTICE_FILE_REAL = #{NoticeFileReal} 
+		where NOTICE_NUMBER_SEQ = #{NoticeNum}  
+		
+	</update>
+	
+	<delete id="delete">
+		delete from Notice where NOTICE_NUMBER_SEQ = #{NoticeNum}
+	</delete>
+	
+		<!-- 조회 수 증가 로직  -->
+	<update id="upHit">
+	
+		update Notice set NOTICE_HITS = NOTICE_HITS+1
+		where Notice_NUMBER_SEQ = #{NoticeNum} 
+		
+	</update>	
+	
+	<select id ="getListMain" resultMap="NoticeMap">
+		SELECT t.*
+			FROM (SELECT * FROM notice ORDER BY NOTICE_NUMBER_SEQ DESC) t 
+			<![CDATA[where ROWNUM <= 5]]>
+	</select>
+</mapper>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.pr.ts.mapper.ITsMapper">
+	<!-- namespace는 어떤 interface를 참조하는지 지정  -->
+
+
+<resultMap type="com.spring.pr.command.TsVO" id="TsMap">
+		<!-- 기본키는 id 태그를 사용하고 나머지는 result 태그를 사용 -->
+		
+		<id property="tsNum" column="TS_NUM_SEQ"/>
+		
+		<result property="tsName" column="TS_NAME"/>
+		<result property="tsSocNum" column="TS_SOC_NUM"/>
+		<result property="tsHomeNum" column="TS_HOME_NUM"/>
+		<result property="tsPhoneNum" column="TS_PHONE_NUM"/>		
+		<result property="tsJob" column="TS_JOB"/>
+		<result property="tsEmail" column="TS_EMAIL"/>
+		
+		<result property="tsExprt" column="TS_EXPRT"/>
+		<result property="tsLngg" column="TS_LNGG"/>
+		<result property="tsDsgCrt" column="TS_DSG_CRT"/>
+		<result property="tsActiveArea" column="TS_ACTIVE_AREA"/>
+		
+		<result property="tsAcadBack" column="TS_ACAD_BACK"/>
+		<result property="tsCarrer" column="TS_CARRER"/>
+		<result property="tsTotalFile" column="TS_TOTAL_FILE"/>
+		<result property="tsTotalFileReal" column="TS_TOTAL_FILE_REAL"/>
+		
+		<result property="tsBank" column="TS_BANK"/>
+		<result property="tsAccHol" column="TS_ACC_HOL"/>
+		<result property="tsBankNum" column="TS_BANK_NUM"/>
+		
+		<result property="tsPostNum" column="TS_POST_NUM"/>	
+		<result property="tsAddr" column="TS_ADDR"/>
+		<result property="tsDtlAddr" column="TS_DTL_ADDR"/>
+		
+		<result property="appNumSeq" column ="APP_NUM_SEQ"/>
+		<result property="joinId" column="JOINID"/>
+		<result property="annNum" column ="ANN_NUM"/>
+		<result property="tsMemo" column ="TS_MEMO"/>
+		<result property="tsSuppAppMemo" column="TSSUPPAPPMEMO"/>
+		<result property="anmTitle" column ="anm_title"/>		
+		<result property="anmDiv" column ="anm_div"/>	
+		<result property="anmDegree" column ="anm_degree"/>		
+		<result property="tsUnqualify" column ="ts_unqualify"/>	
+		<result property="tsQualify" column ="ts_qualify"/>		
+		
+
+		
+		
+			
+	</resultMap>
+	
+	<sql id="search">
+		
+ 		<if test="condition == 'title'">
+		
+			WHERE anm_title LIKE '%'||#{keyword}||'%'
+		
+		</if> 
+				
+		<if test="condition == 'writer'">
+		
+			WHERE joinid LIKE '%'||#{keyword}||'%'
+		
+		</if> 
+		
+		<!-- <if test="condition == writer">
+		
+			WHERE NOTICE_CONTENT LIKE '%'||#{keyword}||'%'
+		
+		</if>
+		공지사항에는 작성자가 관리자만 가능하기 때문에 작성할 필요 없음  -->
+	
+	</sql> 
+	
+	<insert id="regist">
+		INSERT INTO TS(TS_NUM_SEQ, TS_NAME, TS_SOC_NUM, TS_HOME_NUM, TS_PHONE_NUM, TS_JOB, TS_EMAIL, TS_EXPRT, TS_LNGG, TS_DSG_CRT, TS_ACTIVE_AREA, TS_ACAD_BACK, TS_CARRER, TS_TOTAL_FILE, TS_TOTAL_FILE_REAL, TS_BANK, TS_ACC_HOL, TS_BANK_NUM, TS_POST_NUM, TS_ADDR, TS_DTL_ADDR, JOINID, ANN_NUM, anm_title, anm_div, anm_degree, ts_unqualify, ts_qualify)
+		VALUES(TS_NUM_SEQ_NAME.NEXTVAL, #{tsName}, #{tsSocNum}, #{tsHomeNum}, #{tsPhoneNum}, #{tsJob}, #{tsEmail}, #{tsExprt}, #{tsLngg}, #{tsDsgCrt}, #{tsActiveArea}, #{tsAcadBack}, #{tsCarrer}, #{tsTotalFile}, #{tsTotalFileReal}, #{tsBank}, #{tsAccHol}, #{tsBankNum}, #{tsPostNum}, #{tsAddr}, #{tsDtlAddr}, #{joinId}, #{annNum}, #{anmTitle}, #{anmDiv}, #{anmDegree}, #{tsUnqualify}, #{tsQualify} )
+		
+	</insert>
+	
+	<select id ="getList" resultMap="TsMap">
+	
+		SELECT * FROM 
+		(SELECT ROWNUM as rn, tbl.* FROM 
+    		(SELECT TS_NUM_SEQ, anm_degree, anm_title, JOINID, TS_NAME, anm_div FROM ts
+    		<include refid="search"/>
+    		ORDER BY ANN_NUM DESC) tbl )
+    		<![CDATA[ 
+		WHERE rn > (#{pageNum} -1 ) * #{cpp}
+		AND rn <= #{pageNum} * #{cpp}
+		]]>  
+	
+	</select>
+	
+	<select id="getTotal" resultType="int">
+	
+		select count(*) from TS
+	
+	</select>
+	
+	<select id = "getContent" resultMap="TsMap">
+		select * from TS where TS_NUM_SEQ = #{tsNum}
+	</select>
+	
+	<update id="update">
+		
+		UPDATE TS SET TS_NAME = #{tsName}, TS_SOC_NUM = #{tsSocNum}, TS_HOME_NUM = #{tsHomeNum}, TS_PHONE_NUM = #{tsPhoneNum}, TS_JOB = #{tsJob}, TS_EMAIL = #{tsEmail},
+		 TS_EXPRT = #{tsExprt}, TS_LNGG = #{tsLngg}, TS_DSG_CRT = #{tsDsgCrt}, TS_ACTIVE_AREA = #{tsActiveArea}, TS_ACAD_BACK = #{tsAcadBack}, TS_ACAD_BACK_FILE = #{tsAcadBackFile}, TS_ACAD_BACK_FILE_REAL = #{tsAcadBackFileReal},
+		  TS_CARRER = #{tsCarrer}, TS_CARRER_FILE = #{tsCarrerFile}, TS_CARRER_FILE_REAL = #{tsCarrerFileReal}, TS_BANK = #{tsBank}, TS_ACC_HOL = #{tsAccHol}, TS_BANK_NUM = #{tsBankNum}, TS_POST_NUM = #{tsPostNum}, TS_ADDR = #{tsAddr}, TS_DTL_ADDR = #{tsDtlAddr}
+		 
+		where TS_NUM_SEQ = #{tsNum} 
+		
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM TS WHERE TS_NUM_SEQ = #{tsNum}
+	</delete>
+	
+	<select id="getMypageContent" resultMap="TsMap">
+		SELECT * FROM TS where JOINID = #{id}
+	</select>
+	
+	<update id="changeQuali">
+	
+		UPDATE TS SET TS_QUALIFY = #{tsQualify} 
+		WHERE JOINID = #{joinId}
+	
+	</update>
+	
+	<select id ="getSlcList" resultMap="TsMap">
+	
+		SELECT * FROM ts 
+		where ts_qualify = 'Y'
+		<!-- 페이징 만들기 -->
+	
+		<!-- select * from notice order by notice_NUMBER_SEQ DESC -->
+		
+<!-- 		SELECT * FROM 
+		(SELECT ROWNUM as rn, tbl.* FROM 
+    		(SELECT GH_NUM_SEQ, anm_degree, anm_title, JOINID, GH_NAME, anm_div FROM gh 
+    		<include refid="search"/>
+    		ORDER BY ANN_NUM DESC) tbl )
+    		<![CDATA[ 
+		WHERE rn > (#{pageNum} -1 ) * #{cpp}
+		AND rn <= #{pageNum} * #{cpp}
+		]]>   -->
+		
+	</select>
+	
+	
+	<update id="changeUnQuali">
+	
+		UPDATE TS SET TS_UNQUALIFY = #{tsUnqualify} 
+		WHERE JOINID = #{joinId}
+	
+	</update>
+	
+	
+	
+
+</mapper>

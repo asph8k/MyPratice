@@ -1,0 +1,9 @@
+package basic.quiz;
+
+public class Computer {
+
+	private Keyboard keyboard;
+	private Mouse mouse;
+	private Moniter moniter;
+	
+}

@@ -1,0 +1,9 @@
+127.0.0.1 - - [15/Aug/2022:01:01:23 +0900] "GET / HTTP/1.1" 200 11354
+0:0:0:0:0:0:0:1 - - [15/Aug/2022:01:01:23 +0900] "GET /myweb/ HTTP/1.1" 200 14352
+0:0:0:0:0:0:0:1 - - [15/Aug/2022:01:01:24 +0900] "GET /myweb/resources/webfonts/fa-solid-900.woff2 HTTP/1.1" 404 721
+0:0:0:0:0:0:0:1 - - [15/Aug/2022:01:01:24 +0900] "GET /myweb/resources/webfonts/fa-brands-400.woff2 HTTP/1.1" 404 721
+0:0:0:0:0:0:0:1 - - [15/Aug/2022:01:01:24 +0900] "GET /myweb/resources/webfonts/fa-solid-900.woff HTTP/1.1" 404 721
+0:0:0:0:0:0:0:1 - - [15/Aug/2022:01:01:24 +0900] "GET /myweb/resources/webfonts/fa-brands-400.woff HTTP/1.1" 404 721
+0:0:0:0:0:0:0:1 - - [15/Aug/2022:01:01:24 +0900] "GET /myweb/resources/webfonts/fa-brands-400.ttf HTTP/1.1" 404 721
+0:0:0:0:0:0:0:1 - - [15/Aug/2022:01:01:24 +0900] "GET /myweb/resources/webfonts/fa-solid-900.ttf HTTP/1.1" 404 721
+172.104.242.173 - - [15/Aug/2022:01:03:39 +0900] "-" 400 2148

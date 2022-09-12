@@ -1,0 +1,29 @@
+package prefix_sum;
+
+import java.util.Scanner;
+
+public class 구간_합_구하기02_1 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		int N = sc.nextInt(), M = sc.nextInt();
+		int[][] A = new int[N][N];
+		
+		//원본 배열 A 채우기
+		for(int i = 0; i < N; i++) {
+			for(int j = 0; j < N; j++) {
+				A[i][j] = sc.nextInt();
+			}
+		}
+		
+		//구간 합 배열 D 구하기
+		int[][] D = new int[N+1][N+1];
+		for(int i = 1; i <= N; i++) {
+			for(int j = 1; j <= N; j++) {
+				D[i][j] = D[i][j-1] + D[i-1][j] - D[i-1][j-1] + A[i-1][j-1];
+			}
+		}
+	}
+
+}

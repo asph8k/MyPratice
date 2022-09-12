@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.pr.mypage.mapper.IMypageMapper">
+	<!-- namespace는 어떤 interface를 참조하는지 지정  -->
+	
+	
+<!--VO객체이름과 DB의 컬럼명이 다를 때 맞춰주는 작업  -->
+	<resultMap type="com.spring.pr.command.FaqVO" id="FaqMap">
+		<!-- 기본키는 id 태그를 사용하고 나머지는 result 태그를 사용 -->
+		<id column = "FAQ_NUMBER_SEQ" property="FaqNum"/>
+		
+		<result column ="FAQ_TITLE" property = "FaqTitle"/>
+		<result column ="FAQ_CONTENT" property = "FaqContent"/>
+		<result column ="FAQ_DATE" property = "FaqDate"/>
+		<result column ="FAQ_HIT" property = "FaqHit"/>
+		<result column ="FAQ_FILE_LOCA" property = "FaqFileLoca"/>
+		<result column ="JOINID" property = "JOINID"/>
+
+	</resultMap>
+	
+	 <resultMap type="com.spring.pr.command.UserVO" id="UserMap">
+		<!-- 기본키는 id 태그를 사용하고 나머지는 result 태그를 사용 -->
+		<!-- <id column = "JOINSOCNUM" property="JoinSocNum"/> -->
+		<result column = "JOINID" property="JOINID"/>
+		<result column ="JOINSOCNUM" property = "JOINSOCNUM"/>
+		<result column ="ANMNOSEQ" property = "ANMNOSEQ"/>
+		<result column ="JOINPERSON" property = "JOINPERSON"/>
+		<result column ="JOINNAME" property = "JOINNAME"/>
+		<result column ="JOINPW" property = "JOINPW"/>
+		<result column ="JOINGEN" property = "JOINGEN"/>
+		<result column ="JOINEMAIL" property = "JOINEMAIL"/>
+		<result column ="JOINPHONE" property = "JOINPHONE"/>
+		<result column ="JOINADDRNUM" property = "JOINADDRNUM"/>
+		<result column ="JOINADDRBASIC" property = "JOINADDRBASIC"/>
+		<result column ="JOINADDRDETAIL" property = "JOINADDRDETAIL"/>
+
+		<result column ="JOINRIGHT" property = "JOINRIGHT"/>
+		<result column ="INSNAME" property = "INSNAME"/>
+		<result column ="INSSOCNUM" property = "INSSOCNUM"/>
+		<result column ="INSADDRBASIC" property = "INSADDRBASIC"/>
+		<result column ="INSADDRDETAIL" property = "INSADDRDETAIL"/>
+
+	</resultMap> 
+	
+	<!-- getInfo (my info 정보 조회) --> 
+	<select id="getInfo" resultMap="UserMap">
+		SELECT
+			B.JOINID,
+			D.JOINNAME,
+			D.JOINSOCNUM,
+			D.JOINGEN,
+			D.JOINEMAIL,
+			D.JOINPHONE,
+			D.JOINADDRNUM,
+			D.JOINADDRBASIC,
+			D.JOINADDRDETAIL,
+			D.INSNAME,
+			D.INSSOCNUM,
+			D.INSADDRBASIC,
+			D.INSADDRDETAIL
+		FROM USERDETAIL D LEFT OUTER JOIN USERBASIC B
+		ON D.JOINSOCNUM = B.JOINSOCNUM
+		WHERE B.JOINID = #{JOINID}
+	</select>
+	
+	<!-- updateInfo (my info 정보 수정 ) --> 
+	<update id="updateUser">
+		UPDATE USERDETAIL D
+		SET D.JOINADDRNUM = #{JOINADDRNUM},
+			D.JOINADDRBASIC = #{JOINADDRBASIC},
+           	D.JOINADDRDETAIL = #{JOINADDRDETAIL}
+		WHERE JOINSOCNUM = (
+	        SELECT JOINSOCNUM 
+	        FROM USERBASIC B
+	        WHERE JOINID = #{JOINID})
+	</update>
+
+	<!-- deleteUser (회원탈퇴) --> 
+	<delete id="deleteUser1">
+		delete from USERBASIC B
+		where exists
+		(select 1 from USERDETAIL D
+		where B.JOINSOCNUM = D.JOINSOCNUM
+		and d.JOINPW = #{JOINPW})
+		
+	</delete>
+	
+	<delete id="deleteUser2">
+	
+		
+		delete from USERDETAIL 
+		where JOINPW = #{JOINPW}
+		and JOINNAME = #{JOINNAME}
+	</delete>
+	
+	<!-- getSup (조력자 신청 정보 현황조회 ) --> 
+	
+	<!-- updateSup(조력자 신청 정보 수정 ) --> 
+
+	<!-- updateSup(조력자 신청 정보 수정 ) -->
+
+	<!-- getList myfaq 질문 글 목록 조회 -->
+	<select id ="getList" resultMap="FaqMap">
+		select * from FAQ
+	</select>
+		
+	<!-- regist(myfaq 질문 등록 ) --> 
+	<insert id="registFaq">
+	INSERT INTO FAQ(FAQ_NUMBER_SEQ, FAQ_TITLE, FAQ_CONTENT, FAQ_HIT, FAQ_FILE_LOCA, JOINID)
+		VALUES(FAQ_NUMBER_SEQ_NAME.NEXTVAL, #{FaqTitle}, #{FaqContent},  #{FaqHit}, #{FaqFileLoca}, #{JOINID})
+		
+	</insert>
+	
+	<select id="getTotal" resultType="int">
+		select count(*) from Notice
+	</select>
+	
+	<!-- getContent(myfaq 상세보기 ) --> 
+	<select id = "getContent" resultMap="FaqMap">
+		select * from FAQ where FAQ_NUMBER_SEQ = #{FaqNum}
+	</select>
+	
+	<!-- updateFaq(myfaq 글 수정 ) --> 
+	<update id="updateFaq">
+		update FAQ SET FAQ_TITLE = #{FaqTitle}, FAQ_Content = #{FaqContent}, FAQ_FILE_LOCA = #{FaqFileLoca} 
+		where FAQ_NUMBER_SEQ = #{FaqNum}  
+	</update>
+	
+	<!-- deleteFaq(myfaq 글 삭제  ) --> 
+	<delete id="deleteFaq">
+	
+		delete from FAQ where FAQ_NUMBER_SEQ = #{FaqNum}
+		
+	</delete>
+	
+	<!-- upHit(myfaq 조회수 증가 ) -->
+ 	<update id="upHit">
+		update FAQ set FAQ_HIT = FAQ_HIT+1
+		where FAQ_NUMBER_SEQ = #{FaqNum} 
+	</update>
+	
+	
+</mapper>

@@ -1,0 +1,16 @@
+package insertion;
+
+import java.util.Scanner;
+
+public class 삽입정렬_문제01 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		System.out.println("사람 수: ");
+		int N = sc.nextInt(); //사람 수는 N 변수에 들어있음.
+		
+		int[] A = new int[N]; //사람 수만큼의 배열을 선언.(소요시간이 들어감)
+	}
+
+}

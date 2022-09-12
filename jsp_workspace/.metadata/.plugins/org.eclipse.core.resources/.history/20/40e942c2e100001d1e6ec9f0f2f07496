@@ -1,0 +1,15 @@
+package bubble;
+
+public class BubbleSort {
+
+	//버블 정렬
+	public static void sort(int[] arr) {
+		
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int[] arr = {33, 11, 99, 1, 22, 88, 55, 44, 66, 77};
+	}
+
+}

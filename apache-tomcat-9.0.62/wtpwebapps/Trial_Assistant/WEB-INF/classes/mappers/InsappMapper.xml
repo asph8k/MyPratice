@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.spring.pr.insapp.mapper.IInsappMapper">
+
+	<resultMap type="com.spring.pr.command.TotalApplierVO" id="TotalApplierMap">
+		<id column="APP_NUM_SEQ" property="AppNum"/>
+		<result column="JOINID" property="JoinId"/>
+		<result column="APP_WHTR_INGB" property="AppWhtrIngb"/>
+		<result column="APP_DATE" property="AppDate"/>
+		<result column="APP_CLASSIFICATION" property="AppClassification"/>
+		<result column="APP_NAME" property="AppName"/>
+		<result column="INS_NAME" property="appInsName"/>
+		<result column="INS_PHONE" property="appInsPhone"/>
+		<result column="JOINNAME" property="appJoinName"/>
+		<result column="JOINPW" property="appJoinPw"/>
+		<result column="JOINPHONE" property="appJoinPhone"/>
+		<result column="JOINEMAIL" property="appJoinEmail"/>
+		<result column="JOINGEN" property="appJoinGen"/>
+		<result column="JOINSOCNUM" property="appJoinSocNum"/>
+		<result column="JOINADDRBASIC" property="appJoinAddrBasic"/>
+		<result column="JOINADDRDETAIL" property="appJoinAddrDetail"/>
+		<result column="INS_ADDR" property="appInsAddr"/>
+		<result column="APP_MEMO" property="AppMemo"/>
+	</resultMap>
+	
+
+	<resultMap type="com.spring.pr.command.UserBasicVO" id="UserBasicMap">
+		<result column="JOINID" property="JoinId"/>
+		<result column="JOINSOCNUM" property="JoinSocNum"/>
+	</resultMap>
+	
+	<resultMap type="com.spring.pr.command.UserDetailVO" id="UserDetailMap">
+		<result column="JOINNAME" property="JoinName"/>
+		<result column="JOINPW" property="JoinPw"/>
+		<result column="JOINGEN" property="JoinGen"/>
+		<result column="JOINEMAIL" property="JoinEmail"/>
+		<result column="JOINPHONE" property="JoinPhone"/>
+		<result column="JOINADDRBASIC" property="JoinAddrBasic"/>
+		<result column="JOINADDRDETAIL" property="JoinAddrDetail"/>
+		<result column="JOINSOCNUM" property="JoinSocNum"/>
+	</resultMap>
+	
+	<resultMap type="com.spring.pr.command.InsVO" id="InsMap">
+		<result column="INS_NUM" property="InsNum"/>
+		<result column="INS_NAME" property="InsName"/>
+		<result column="INS_PHONE" property="InsPhone"/>
+		<result column="INS_ADDR" property="InsAddr"/>
+		<result column="JOINID" property="JoinId"/>
+	</resultMap>
+	
+	<sql id="search">
+	   	<if test="keyword != null and keyword != ''"> 		
+	   		WHERE INS_NAME LIKE '%'||#{keyword}||'%'
+	   	</if>	   	
+   	</sql>
+	
+	<select id="getInsappList" resultMap="TotalApplierMap">
+		SELECT * FROM
+			(
+			SELECT ROWNUM AS rn, tbl.*FROM
+				(
+					SELECT ta.app_num_seq, ins.ins_name, ins.ins_phone, ta.app_date
+					FROM Totalapplier ta INNER JOIN Ins ins
+					ON ta.joinid = ins.joinid
+					<include refid="search"/>
+					ORDER BY INS_NUM ASC
+				)tbl
+			)
+		<![CDATA[
+	      WHERE rn > (#{pageNum}-1) * #{cpp}
+	      AND rn <= #{pageNum} * #{cpp}
+     	]]>
+	</select>
+	
+	<select id="getInsappTotal" resultType="int">
+		SELECT COUNT(*) FROM Userbasic
+	</select>
+	
+	<select id="getInsappContent" resultMap="TotalApplierMap">
+		SELECT ud.joinname, ta.joinid, ud.joinpw, ud.joinphone, ud.joinemail, ud.joingen, ub.joinsocnum, ud.joinaddrbasic, ud.joinaddrdetail,
+		        ins.ins_name, ins.ins_phone, ins.ins_addr, ta.app_memo, ta.app_num_seq
+		FROM totalapplier ta INNER JOIN Ins ins
+		ON ta.joinid = ins.joinid
+		INNER JOIN userbasic ub
+		ON ins.joinid = ub.joinid
+		INNER JOIN userdetail ud
+		ON ub.joinsocnum = ud.joinsocnum
+		WHERE ta.app_num_seq = #{AppNum}
+	</select>
+	
+	<update id="updateInsapp">
+		UPDATE totalapplier SET
+			APP_MEMO = #{AppMemo}
+		WHERE APP_NUM_SEQ = #{AppNum}
+	</update>
+	
+	<delete id="deleteInsapp">
+		DELETE FROM totalapplier
+		WHERE app_num_seq = #{AppNum}
+	</delete>
+	
+</mapper>

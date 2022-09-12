@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.spring.pr.announcement.mapper.IAnnMapper">
+	<!-- namespace는 어떤 interface를 참조하는지 지정  -->
+	
+	<!-- 
+	/*
+	CREATE TABLE Announcement (
+		anm_no_seq NUMBER(10), 
+		anm_upload_date DATE  DEFAULT sysdate NOT NULL, 
+		anm_title VARCHAR2(100) NOT NULL, 
+		anm_content VARCHAR2(1000) NOT NULL, 
+		anm_file_loca VARCHAR2(100) NOT NULL, 
+		anm_view_cnt NUMBER  DEFAULT 0 , 
+		mngr_id VARCHAR2(20) NOT NULL, 
+		anm_degree VARCHAR2(50) NOT NULL,
+		anm_start DATE NOT NULL, 
+		anm_end DATE NOT NULL
+		);	
+	
+	CREATE SEQUENCE anm_no_seq_name
+	    START WITH 1
+	    INCREMENT BY 1 
+	    MAXVALUE 1000
+	    NOCYCLE 
+	    NOCACHE; 
+	*/
+	
+	private int AnmNum;
+	private Date AnmUploadDate;
+	private String AnmTitle;
+	private String AnmContent;
+	private String AnmFileLoca;
+	private int AnmViewCnt;
+	private String ManagerId;
+	private String AnmDegree;
+	private Date AnmStart;
+	private Date AnmEnd; -->
+	
+	<!--VO객체이름과 DB의 컬럼명이 다를 때 맞춰주는 작업  -->
+	<resultMap type="com.spring.pr.command.AncmtVO" id="AnnouncementMap">
+	
+		<!-- 기본키는 id 태그를 사용하고 나머지는 result 태그를 사용 -->
+		<id column = "ANM_NO_SEQ" property="AnmNum"/>
+		
+		<result column ="ANM_UPLOAD_DATE" property = "AnmUploadDate"/>
+		<result column ="ANM_TITLE" property = "AnmTitle"/>
+		<result column ="ANM_CONTENT" property = "AnmContent"/>
+		<result column ="ANM_FILE_LOCA" property = "AnmFileLoca"/>
+		<result column ="ANM_VIEW_CNT" property = "AnmViewCnt"/>
+		<result column ="MNGR_ID" property = "ManagerId"/>
+		<result column ="ANM_DEGREE" property = "AnmDegree"/>
+		<result column ="ANM_START" property = "AnmStart"/>
+		<result column ="ANM_END" property = "AnmEnd"/>
+		<result column ="ANM_YEAR" property = "AnmYear"/>
+		<result column ="ANM_DIVISION" property = "AnmDivision"/>
+		
+	</resultMap>
+	
+	<sql id="search">
+		
+	   	<if test="keyword != null and keyword != ''"> 	
+	   		WHERE ANM_DIVISION = #{condition}	
+	   		AND ANM_TITLE LIKE '%'||#{keyword}||'%'
+	   	</if>
+	   	
+	   	
+	   	
+   </sql>
+
+	<insert id="regist">
+		INSERT INTO 
+		ANNOUNCEMENT(ANM_NO_SEQ, ANM_UPLOAD_DATE, ANM_TITLE, ANM_CONTENT,
+			   ANM_FILE_LOCA, ANM_VIEW_CNT, MNGR_ID, ANM_DEGREE, ANM_START, ANM_END, ANM_YEAR, ANM_DIVISION)
+	    VALUES(ANM_NO_SEQ_NAME.NEXTVAL, #{AnmUploadDate}, #{AnmTitle}, #{AnmContent}, 
+	    #{AnmFileLoca}, #{AnmViewCnt}, #{ManagerId}, #{AnmDegree}, #{AnmStart}, #{AnmEnd}, #{AnmYear}, #{AnmDivision})
+	</insert>
+	
+	<select id ="getList" resultMap="AnnouncementMap">
+		
+		SELECT * FROM
+			(
+			SELECT ROWNUM AS rn, tbl.*FROM
+				(
+				SELECT 
+					ANM_NO_SEQ,
+					ANM_YEAR,
+					ANM_DEGREE, 
+					ANM_TITLE, ANM_START, 
+					ANM_END, ANM_DIVISION,
+					ANM_VIEW_CNT 
+					FROM Announcement
+					<include refid="search"/>
+					ORDER BY ANM_NO_SEQ DESC
+				)tbl
+			)
+		<![CDATA[
+	      WHERE rn > (#{pageNum}-1) * #{cpp}
+	      AND rn <= #{pageNum} * #{cpp}
+     	]]>
+
+	</select>
+	
+	
+	<select id="getContent" resultMap="AnnouncementMap">
+		SELECT * FROM Announcement WHERE ANM_NO_SEQ = #{AnmNum}
+	</select>
+	
+	<select id="getTotal" resultType="int">
+	
+		SELECT COUNT(*) FROM Announcement
+	
+	</select>
+	
+	<!-- 제목, 내용, 년도, 차수, 공고기간, 조력자구분, 파일  (공고상태는 굳이 컬럼에 넣어주지 않음.)-->
+	<update id="update">
+		
+		UPDATE ANNOUNCEMENT SET ANM_TITLE = #{AnmTitle}, ANM_CONTENT= #{AnmContent}, ANM_YEAR = #{AnmYear},
+		ANM_DEGREE = #{AnmDegree}, ANM_START = #{AnmStart}, ANM_END = #{AnmEnd}, 
+		ANM_DIVISION = #{AnmDivision}, ANM_FILE_LOCA = #{AnmFileLoca} 
+		where ANM_NO_SEQ = #{AnmNum}  
+		
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM Announcement WHERE ANM_NO_SEQ = #{AnmNum}
+	</delete>
+	
+	<!-- 검색 필터도 추가 -->
+	
+	<select id ="getListMain" resultMap="AnnouncementMap">
+		SELECT t.*
+			FROM (SELECT * FROM Announcement ORDER BY ANM_NO_SEQ DESC) t 
+			<![CDATA[where ROWNUM <= 5]]>
+	</select>
+
+</mapper>

@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.spring.pr.app.mapper.IAppMapper">
+
+	<resultMap type="com.spring.pr.command.TotalApplierVO" id="TotalApplierMap">
+		<id column="APP_NUM_SEQ" property="AppNum"/>
+		<result column="JOINID" property="JoinId"/>
+		<result column="APP_WHTR_INGB" property="AppWhtrIngb"/>
+		<result column="APP_DATE" property="AppDate"/>
+		<result column="APP_CLASSIFICATION" property="AppClassification"/>
+		<result column="APP_NAME" property="AppName"/>
+		<result column="APP_MEMO" property="AppMemo"/>
+	</resultMap>
+	
+	<resultMap type="com.spring.pr.command.AppVO" id="AppMap">
+		<id column="ANM_NO_SEQ" property="AnmNoSeq"/>
+		<id column="APP_NUM_SEQ" property="AppNumSeq"/>
+		<id column="INSTT_NUM_SEQ" property="InsttNumSeq"/>
+		<id column="TS_NUM_SEQ" property="TsNumSeq"/>
+		<id column="GH_NUM_SEQ" property="GhNumSeq"/>
+		<result column="INSTT_NAME" property="InsttName"/>
+		<result column="INSTT_OFC_NAME" property="InsttOfcName"/>
+		<result column="INSTT_YEAR" property="InsttYear"/>
+		<result column="INSTT_SRTTN" property="InsttSrttn"/>
+		<result column="INSTT_DTL_SRTTN" property="InsttDtlSrttn"/>
+		<result column="INSTT_SOC_NUM" property="InsttSocNum"/>
+		<result column="INSTT_BSNS_NUM" property="InsttBsnsNum"/>
+		<result column="INSTT_JOB" property="InsttJob"/>
+		<result column="INSTT_FAX" property="InsttFax"/>
+		<result column="INSTT_HOME_NUM" property="InsttHomeNum"/>
+		<result column="INSTT_ACAD_BACK" property="InsttAcadBack"/>
+		<result column="INSTT_ACAD_BACK_FILE" property="InsttAcadBackFile"/>
+		<result column="INSTT_CARRER" property="InsttCarrer"/>
+		<result column="INSTT_CARRER_FILE" property="InsttCarrerFile"/>
+		<result column="INSTT_EMAIL" property="InsttEmail"/>
+		<result column="INSTT_PHONE_NUM" property="InsttPhoneNum"/>
+		<result column="INSTT_BANK" property="InsttBank"/>
+		<result column="INSTT_ACC_HOL" property="InsttAccHol"/>
+		<result column="INSTT_BANK_NUM" property="InsttBankNum"/>
+		<result column="INSTT_POST_NUM" property="InsttPostNum"/>
+		<result column="INSTT_ADDR" property="InsttAddr"/>
+		<result column="INSTT_DTL_ADDR" property="InsttDtlAddr"/>
+		<!-- <result column="JOINID" property="JoinId"/> -->
+		<result column="INSTT_MEMO" property="InsttMemo"/>
+		
+		<result column="TS_NAME" property="TsName"/>
+		<result column="TS_SOC_NUM" property="TsSocNum"/>
+		<result column="TS_HOME_NUM" property="TsHomeNum"/>
+		<result column="TS_ACAD_BACK" property="TsAcadBack"/>
+		<result column="TS_ACAD_BACK_FILE" property="TsAcadBackFile"/>
+		<result column="TS_CARRER" property="TsCarrer"/>
+		<result column="TS_CARRER_FILE" property="TsCarrerFile"/>
+		<result column="TS_EMAIL" property="TsEmail"/>
+		<result column="TS_PHONE_NUM" property="TsPhoneNum"/>
+		<result column="TS_BANK" property="TsBank"/>
+		<result column="TS_ACC_HOL" property="TsAccHol"/>
+		<result column="TS_BANK_NUM" property="TsBankNum"/>
+		<result column="TS_POST_NUM" property="TsPostNum"/>
+		<result column="TS_ADDR" property="TsAddr"/>
+		<result column="TS_DTL_ADDR" property="TsDtlAddr"/>
+		<result column="TS_EXPRT" property="TsExprt"/>
+		<result column="TS_LNGG" property="TsLngg"/>
+		<result column="TS_DSG_CRT" property="TsDsgCrt"/>
+		<result column="TS_ACTIVE_AREA" property="TsActiveArea"/>
+		<result column="TS_DSGNT_COURT" property="TsDsgntCourt"/>
+		<result column="TS_ACTVT_AREA" property="TsActvtArea"/>
+		<!-- <result column="JOINID" property="JoinId"/> -->
+		<result column="TS_YEAR" property="TsYear"/>
+		<result column="TS_SRTTN" property="TsSrttn"/>
+		<result column="TS_DTL_SRTTN" property="TsDtlSrttn"/>
+		<result column="TS_MEMO" property="TsMemo"/>
+		
+		<result column="GH_NAME" property="GhName"/>
+		<result column="GH_OFC_NAME" property="GhOfcName"/>
+		<result column="GH_OFC_NUM" property="GhOfcNum"/>
+		<result column="GH_YEAR" property="GhYear"/>
+		<result column="GH_SRTTN" property="GhSrttn"/>
+		<result column="GH_SOC_NUM" property="GhSocNum"/>
+		<result column="GH_BSNS_NUM" property="GhBsnsNum"/>
+		<result column="GH_JOB" property="GhJob"/>
+		<result column="GH_FAX" property="GhFax"/>
+		<result column="GH_HOME_NUM" property="GhHomeNum"/>
+		<result column="GH_ACAD_BACK" property="GhAcadBack"/>
+		<result column="GH_ACAD_BACK_FILE" property="GhAcadBackFile"/>
+		<result column="GH_CARRER" property="GhCarrer"/>
+		<result column="GH_CARRER_FILE" property="GhCarrerFile"/>
+		<result column="GH_EMAIL" property="GhEmail"/>
+		<result column="GH_PHONE_NUM" property="GhPhoneNum"/>
+		<result column="GH_BANK" property="GhBank"/>
+		<result column="GH_ACC_HOL" property="GhAccHol"/>
+		<result column="GH_BANK_NUM" property="GhBankNum"/>
+		<result column="GH_POST_NUM" property="GhPostNum"/>
+		<result column="GH_PSTL_CODE" property="GhPstlCode"/>
+		<result column="GH_ADDR" property="GhAddr"/>
+		<result column="GH_DTL_ADDR" property="GhDtlAddr"/>
+		<!-- <result column="JOINID" property="JoinId"/> -->
+		<result column="GH_DTL_SRTTN" property="GhDtlSrttn"/>
+		<result column="GH_MEMO" property="GhMemo"/>
+		
+		<!-- 토탈에서 추가 -->
+		<result column="JOINID" property="JoinId"/>
+		<result column="APP_WHTR_INGB" property="AppWhtrIngb"/>
+		<result column="APP_DATE" property="AppDate"/>
+		<result column="APP_CLASSIFICATION" property="AppClassification"/>
+		<result column="APP_NAME" property="AppName"/>
+		<result column="APP_MEMO" property="AppMemo"/>
+		
+		<!-- 추가된 변수명 -->
+		<result column="UNQ_REASON" property="UnqReason"/>
+	</resultMap>
+	
+	
+	
+<!-- 
+	<resultMap type="com.spring.pr.command.InsttVO" id="InsttMap">
+		<id column="INSTT_NUM_SEQ" property="InsttNum"/>
+		<id column="APP_NUM_SEQ" property="AppNum"/>
+		<result column="INSTT_NAME" property="InsttName"/>
+		<result column="INSTT_OFC_NAME" property="InsttOfcName"/>
+		<result column="INSTT_YEAR" property="InsttYear"/>
+		<result column="INSTT_SRTTN" property="InsttSrttn"/>
+		<result column="INSTT_DTL_SRTTN" property="InsttDtlSrttn"/>
+		<result column="INSTT_SOC_NUM" property="InsttSocNum"/>
+		<result column="INSTT_BSNS_NUM" property="InsttBsnsNum"/>
+		<result column="INSTT_JOB" property="InsttJob"/>
+		<result column="INSTT_FAX" property="InsttFax"/>
+		<result column="INSTT_HOME_NUM" property="InsttHomeNum"/>
+		<result column="INSTT_ACAD_BACK" property="InsttAcadBack"/>
+		<result column="INSTT_ACAD_BACK_FILE" property="InsttAcadBakFile"/>
+		<result column="INSTT_CARRER" property="InsttCarrer"/>
+		<result column="INSTT_CARRER_FILE" property="InsttCarrerBack"/>
+		<result column="INSTT_EMAIL" property="InsttEmail"/>
+		<result column="INSTT_PHONE_NUM" property="InsttPhoneNum"/>
+		<result column="INSTT_BANK" property="InsttBank"/>
+		<result column="INSTT_ACC_HOL" property="InsttAccHol"/>
+		<result column="INSTT_BANK_NUM" property="InsttBankNum"/>
+		<result column="INSTT_POST_NUM" property="InsttPostNum"/>
+		<result column="INSTT_ADDR" property="InsttAddr"/>
+		<result column="INSTT_DTL_ADDR" property="InsttDtlAddr"/>
+		<result column="JOINID" property="JoinId"/>
+		<result column="INSTT_MEMO" property="InsttMemo"/>
+	</resultMap>
+	
+	<resultMap type="com.spring.pr.command.TsVO" id="TsMap">
+		<id column="TS_NUM_SEQ" property="TsNum"/>
+		<id column="APP_NUM_SEQ" property="AppNum"/>
+		<result column="TS_NAME" property="TsName"/>
+		<result column="TS_SOC_NUM" property="TsSocNum"/>
+		<result column="TS_HOME_NUM" property="TsHomeNum"/>
+		<result column="TS_ACAD_BACK" property="TsAcadBack"/>
+		<result column="TS_ACAD_BACK_FILE" property="TsAcadBackFile"/>
+		<result column="TS_CARRER" property="TsCarrer"/>
+		<result column="TS_CARRER_FILE" property="TsCarrerFile"/>
+		<result column="TS_EMAIL" property="TsEmail"/>
+		<result column="TS_PHONE_NUM" property="TsPhoneNum"/>
+		<result column="TS_BANK" property="TsBank"/>
+		<result column="TS_ACC_HOL" property="TsAccHol"/>
+		<result column="TS_BANK_NUM" property="TsBankNum"/>
+		<result column="TS_POST_NUM" property="TsPostNum"/>
+		<result column="TS_ADDR" property="TsAddr"/>
+		<result column="TS_DTL_ADDR" property="TsDtlAddr"/>
+		<result column="TS_EXPRT" property="TsExprt"/>
+		<result column="TS_LNGG" property="TsLngg"/>
+		<result column="TS_DSG_CRT" property="TsDsgCrt"/>
+		<result column="TS_ACTIVE_AREA" property="TsActiveArea"/>
+		<result column="TS_DSGNT_COURT" property="TsDsgntCourt"/>
+		<result column="TS_ACTVT_AREA" property="TsActvtArea"/>
+		<result column="JOINID" property="JoinId"/>
+		<result column="TS_YEAR" property="TsYear"/>
+		<result column="TS_SRTTN" property="TsSrttn"/>
+		<result column="TS_DTL_SRTTN" property="TsDtlSrttn"/>
+		<result column="TS_MEMO" property="TsMemo"/>
+	</resultMap>
+	
+	<resultMap type="com.spring.pr.command.GhVO" id="GhMap">
+		<id column="GH_NUM_SEQ" property="GhNum"/>
+		<id column="APP_NUM_SEQ" property="AppNum"/>
+		<result column="GH_NAME" property="GhName"/>
+		<result column="GH_OFC_NAME" property="GhOfcName"/>
+		<result column="GH_OFC_NUM" property="GhOfcNum"/>
+		<result column="GH_YEAR" property="GhYear"/>
+		<result column="GH_SRTTN" property="GhSrttn"/>
+		<result column="GH_SOC_NUM" property="GhSocNum"/>
+		<result column="GH_BSNS_NUM" property="GhBsnsNum"/>
+		<result column="GH_JOB" property="GhJob"/>
+		<result column="GH_FAX" property="GhFax"/>
+		<result column="GH_HOME_NUM" property="GhHomeNum"/>
+		<result column="GH_ACAD_BACK" property="GhAcadBack"/>
+		<result column="GH_ACAD_BACK_FILE" property="GhAcadBackFile"/>
+		<result column="GH_CARRER" property="GhCarrer"/>
+		<result column="GH_CARRER_FILE" property="GhCarrerFile"/>
+		<result column="GH_EMAIL" property="GhEmail"/>
+		<result column="GH_PHONE_NUM" property="GhPhoneNum"/>
+		<result column="GH_BANK" property="GhBank"/>
+		<result column="GH_ACC_HOL" property="GhAccHol"/>
+		<result column="GH_BANK_NUM" property="GhBankNum"/>
+		<result column="GH_POST_NUM" property="GhPostNum"/>
+		<result column="GH_PSTL_CODE" property="GhPstlCode"/>
+		<result column="GH_ADDR" property="GhAddr"/>
+		<result column="GH_DTL_ADDR" property="GhDtlAddr"/>
+		<result column="JOINID" property="JoinId"/>
+		<result column="GH_DTL_SRTTN" property="GhDtlSrttn"/>
+		<result column="GH_MEMO" property="GhMemo"/>
+	</resultMap>
+ -->	
+	<sql id="search">
+	   	<if test="keyword != null and keyword != ''"> 	
+	   		WHERE APP_CLASSIFICATION = #{condition}	
+	   		AND APP_NAME LIKE '%'||#{keyword}||'%'
+	   	</if>	   	
+   	</sql>
+	
+ 	<!-- Announcement테이블에서 공고번호를 받아서 TotalApplier테이블에 모든 데이터를
+ 	나타내 주기 위해 작성된 쿼리문 (TotalApplier테이블부터 Userbasic테이블과 Announcement테이블 3개 JOIN하여 조인된 테이블에서 조회하고 싶은 컬럼을 조회한다.)-->
+	<select id="getAppList" resultMap="AppMap">
+		SELECT * FROM
+			(
+			SELECT ROWNUM AS rn, tbl.*FROM
+				(
+					SELECT an.anm_no_seq ,ta.APP_NUM_SEQ, ta.JOINID, ta.APP_NAME, ta.APP_CLASSIFICATION, ta.APP_DATE
+					FROM TotalApplier ta INNER JOIN userbasic ub
+					ON ta.joinid = ub.joinid
+					INNER JOIN announcement an
+					ON ub.anmnoseq = an.anm_no_seq
+					<include refid="search"/>
+					ORDER BY anm_no_seq ASC
+				)tbl
+			)
+		<![CDATA[
+	      WHERE rn > (#{pageNum}-1) * #{cpp}
+	      AND rn <= #{pageNum} * #{cpp}
+     	]]>
+	</select>
+	
+	<!-- 페이징을 위해 TotalApplier테이블에서 총 몇개의 데이터가 있는지 총 개수를 구하는 쿼리문 -->
+	<select id="getAppTotal" resultType="int">
+		SELECT COUNT(*) FROM Totalapplier
+	</select>
+	
+	<!-- Announcement테이블에서 공고번호를 받아와서 Ts테이블에서 통번역인에 대한 상세보기를 위한 쿼리문
+	(Announcement테이블부터 Userbasic테이블과 TotalApplier테이블과 Gh테이블 4개를 JOIN하여 조인된 테이블에서 Announcement테이블에서 공고번호가 이 번호에 맞는 컬럼들을 조회한다.) -->
+	<select id="getGhAppContent" resultMap="AppMap">
+		SELECT 
+		    gh.GH_NUM_SEQ, gh.gh_name, ta.joinid, gh.gh_soc_num, gh.gh_home_num, gh.gh_phone_num, gh.gh_email,
+		    gh.gh_job, gh.gh_fax, gh.gh_bank, gh.gh_acc_hol, gh.gh_bank_num, gh.gh_srttn, gh.gh_year,
+		    gh.gh_bsns_num, gh.gh_ofc_num, gh.gh_ofc_name, gh.gh_acad_back, gh.gh_acad_back_file,
+		    gh.gh_carrer, gh.gh_carrer_file, gh.gh_addr, gh.gh_dtl_addr, gh.gh_dtl_srttn, gh.APP_NUM_SEQ, gh.gh_post_num, gh.gh_memo, an.ANM_NO_SEQ, uq.unq_reason
+		FROM announcement an INNER JOIN userbasic ub
+		    ON an.anm_no_seq = ub.anmnoseq 
+		    INNER JOIN unqualify uq
+		    ON ub.joinid = uq.join_id
+		    INNER JOIN totalapplier ta
+		    ON uq.join_id = ta.joinid
+		    INNER JOIN Gh gh
+		    ON ta.joinid = gh.joinid
+		WHERE an.anm_no_seq = #{AnmNoSeq} 
+	</select>
+		
+	<!-- Announcement테이블에서 공고번호를 받아와서 Gh테이블에서 일반조력자에 대한 상세보기를 위한 쿼리문
+	(Announcement테이블부터 Userbasic테이블과 TotalApplier테이블과 Ts테이블 4개를 JOIN하여 조인된 테이블에서 Announcement테이블에서 공고번호가 이 번호에 맞는 컬럼들을 조회한다.) -->
+	<select id="getTsAppContent" resultMap="AppMap">
+		SELECT ts.TS_NUM_SEQ, ts.ts_name, ta.joinid, ts.ts_soc_num, ts.ts_home_num, ts.ts_phone_num, ts.ts_email,
+	        ts.ts_bank, ts.ts_acc_hol, ts.ts_bank_num, ts.ts_exprt, ts.ts_lngg, ts.ts_dsg_crt, ts.ts_active_area,
+	        ts.ts_acad_back, ts.ts_acad_back_file, ts.ts_carrer, ts.ts_carrer_file,
+	        ts.ts_addr, ts.ts_dtl_addr, ts.ts_post_num, ts.ts_srttn, ts.ts_year, ts.ts_dtl_srttn, ts.APP_NUM_SEQ, ts.ts_memo, an.ANM_NO_SEQ, uq.unq_reason
+		FROM announcement an INNER JOIN userbasic ub
+			ON an.anm_no_seq = ub.anmnoseq 
+			INNER JOIN unqualify uq
+            ON ub.joinid = uq.join_id
+            INNER JOIN totalapplier ta
+            ON uq.join_id = ta.joinid
+            INNER JOIN Ts ts
+            ON ta.joinid = ts.joinid
+		WHERE an.anm_no_seq = #{AnmNoSeq}
+	</select>
+	
+	<!-- Announcement테이블에서 공고번호를 받아와서 Instt테이블에서 기관추천조력자에 대한 상세보기를 위한 쿼리문
+	(Announcement테이블과 Userbasic테이블과 TotalApplier테이블과 Instt테이블 4개를 JOIN하여 조인된 테이블에서 Announcement테이블에서 공고번호가 이 번호에 맞는 컬럼들을 조회한다.) -->
+	<select id="getInsttAppContent" resultMap="AppMap">
+		SELECT it.INSTT_NUM_SEQ, it.instt_name, ta.joinid, it.instt_soc_num, it.instt_home_num, it.instt_phone_num, it.instt_email,
+	        it.instt_job, it.instt_fax, it.instt_bank, it.instt_acc_hol, it.instt_bank_num,
+	        it.instt_srttn, it.instt_dtl_srttn, it.instt_year,
+	        it.instt_bsns_num, it.instt_ofc_name,
+	        it.instt_acad_back, it.instt_acad_back_file, it.instt_carrer, it.instt_carrer_file,
+	        it.instt_addr, it.instt_dtl_addr, it.instt_post_num, it.APP_NUM_SEQ, it.instt_memo, an.ANM_NO_SEQ, uq.unq_reason
+		FROM announcement an INNER JOIN userbasic ub
+			ON an.anm_no_seq = ub.anmnoseq 
+			INNER JOIN unqualify uq
+            ON ub.joinid = uq.join_id
+            INNER JOIN totalapplier ta
+            ON uq.join_id = ta.joinid
+            INNER JOIN Instt it
+            ON ta.joinid = it.joinid
+		WHERE an.anm_no_seq = #{AnmNoSeq}
+	</select>
+	
+ 	<!-- 일반조력자 수정에서 신청자메모를 수정하게 되면 Gh테이블에서도 메모가 수정되어야 하기 때문에 수정을 하기 위한 쿼리문 -->
+ 	<!-- Gh(일반조력자)테이블에서 Gh의 번호가 이 번호인 GH_MEMO를 수정한다. -->
+	<update id="updateGhApp">
+		UPDATE Gh SET
+		    gh_memo = #{GhMemo}
+		WHERE GH_NUM_SEQ = #{GhNum}
+	</update>
+	
+	<!-- 통번역인 수정에서 신청자메모를 수정하게 되면 Ts테이블에서도 메모가 수정되어야 하기 때문에 수정을 하기 위한 쿼리문 -->
+	<!-- Ts(통번역인)테이블에서 Ts의 번호가 이 번호인 TS_MEMO를 수정한다. -->
+	<update id="updateTsApp">
+		UPDATE TS SET
+			TS_MEMO = #{TsMemo}
+		WHERE TS_NUM_SEQ = #{TsNum}
+	</update>
+	
+	<!-- 기관추천조력자 수정에서 신청자메모를 수정하게 되면 Instt테이블에서도 메모가 수정되어야 하기 때문에 수정을 하기 위한 쿼리문 -->
+	<!-- Instt(기관추천조력자)테이블에서 Instt의 번호가 이 번호인 INSTT_MEMO를 수정한다. -->
+	<update id="updateInsttApp">
+		UPDATE Instt SET
+		    instt_memo = #{InsttMemo}
+		WHERE INSTT_NUM_SEQ = #{InsttNum}
+	</update>
+	
+	<!-- 신청번호를 받아 해당 정보를 삭제하기 위한 쿼리문 --> 
+	<delete id="deleteApp">
+		DELETE FROM TotalApplier
+		WHERE APP_NUM_SEQ = #{AppNumSeq}
+	</delete>
+	
+	<!-- 부적격 처리 쿼리문 -->
+	<insert id="insertTsUnq">
+		INSERT INTO unqualify
+		(JOIN_ID, UNQ_REASON)
+		VALUES (#{JoinId}, #{UnqReason})
+	</insert>
+	
+	<insert id="insertGhUnq">
+		INSERT INTO unqualify
+		(JOIN_ID, UNQ_REASON)
+		VALUES (#{JoinId}, #{UnqReason})
+	</insert>
+	
+	<insert id="insertInsttUnq">
+		INSERT INTO unqualify
+		(JOIN_ID, UNQ_REASON)
+		VALUES (#{JoinId}, #{UnqReason})
+	</insert>
+
+</mapper>

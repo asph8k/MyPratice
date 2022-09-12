@@ -1,0 +1,17 @@
+package basic.ex04;
+
+import javax.annotation.Resource;
+
+public class Book {
+
+	@Resource()
+	private Paper paper;
+
+	public Paper getPaper() {
+		return paper;
+	}
+
+	public void setPaper(Paper paper) {
+		this.paper = paper;
+	}	
+}

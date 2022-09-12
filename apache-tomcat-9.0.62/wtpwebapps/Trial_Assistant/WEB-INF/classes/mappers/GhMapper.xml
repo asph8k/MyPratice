@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.spring.pr.gh.mapper.IGhMapper">
+	<!-- namespace는 어떤 interface를 참조하는지 지정  -->
+	
+	
+	<!--VO객체이름과 DB의 컬럼명이 다를 때 맞춰주는 작업  -->
+	<resultMap type="com.spring.pr.command.GhVO" id="GhMap">
+		<!-- 기본키는 id 태그를 사용하고 나머지는 result 태그를 사용 -->
+		<id property="ghNum" column = "GH_NUM_SEQ"/>
+		
+		<result property="ghName" column ="GH_NAME"/>
+		<result property="ghOfcName" column ="GH_OFC_NAME"/>
+		<result property="ghOfcNum" column="GH_OFC_NUM"/>
+		<result property="ghYear" column="GH_YEAR"/>
+		<result property="ghSrttn" column="GH_SRTTN"/>
+		<result property="ghSocNum" column="GH_SOC_NUM"/>
+		<result property="ghBsnsNum" column="GH_BSNS_NUM"/>
+		<result property="ghJob" column="GH_JOB"/>
+		<result property="ghFax" column="GH_FAX"/>
+		<result property="ghHomeNum" column="GH_HOME_NUM"/>
+		
+		<result property="ghAcadBack" column="GH_ACAD_BACK"/>
+		<result property="ghCarrer" column="GH_CARRER"/>
+		
+		<result property="ghTotalFile" column="GH_TOTAL_FILE"/>
+		<result property="ghTotalFileReal" column="GH_TOTAL_FILE_REAL"/>
+
+		
+		<result property="ghEmail" column="GH_EMAIL"/>
+		<result property="ghPhoneNum" column="GH_PHONE_NUM"/>
+		<result property="ghBank" column="GH_BANK"/>
+		<result property="ghAccHol" column="GH_ACC_HOL"/>
+		<result property="ghBankNum" column ="GH_BANK_NUM"/>
+		<result property="ghPostNum" column ="GH_POST_NUM"/>
+		<result property="ghAddr" column="GH_ADDR"/>
+		<result property="ghDtlAddr" column ="GH_DTL_ADDR"/>
+		<result property="appNumSeq" column ="APP_NUM_SEQ"/>
+		<result property="joinId" column="JOINID"/>
+		<result property="annNum" column ="ANN_NUM"/>
+		<result property="ghMemo" column ="GH_MEMO"/>
+		<result property="ghSuppAppMemo" column="GHSUPPAPPMEMO"/>
+		<result property="ghDtlSrttn" column ="GH_DTL_SRTTN"/>		
+		<result property="anmTitle" column ="anm_title"/>		
+		<result property="anmDiv" column ="anm_div"/>		
+		<result property="anmDegree" column ="anm_degree"/>		
+		<result property="ghUnqualify" column ="gh_unqualify"/>	
+		<result property="ghQualify" column ="gh_qualify"/>				
+		
+
+		
+	</resultMap>
+	
+		<!-- 이거 condition이 title과 content 어디서 나오는지 확인 해보기  -->
+	<sql id="search">
+		
+ 		<if test="condition == 'title'">
+		
+			WHERE anm_title LIKE '%'||#{keyword}||'%'
+		
+		</if> 
+				
+		<if test="condition == 'writer'">
+		
+			WHERE joinid LIKE '%'||#{keyword}||'%'
+		
+		</if> 
+		
+		<!-- <if test="condition == writer">
+		
+			WHERE NOTICE_CONTENT LIKE '%'||#{keyword}||'%'
+		
+		</if>
+		공지사항에는 작성자가 관리자만 가능하기 때문에 작성할 필요 없음  -->
+	
+	</sql> 
+	
+	
+	<insert id="regist">
+	
+		INSERT INTO GH(GH_NUM_SEQ, GH_NAME, GH_OFC_NAME, GH_OFC_NUM, GH_YEAR, GH_SRTTN, GH_SOC_NUM, GH_BSNS_NUM, GH_JOB, GH_FAX, GH_HOME_NUM, GH_ACAD_BACK, GH_CARRER, GH_TOTAL_FILE, GH_TOTAL_FILE_REAL, GH_EMAIL, GH_PHONE_NUM, GH_BANK, GH_ACC_HOL, GH_BANK_NUM, GH_POST_NUM, GH_ADDR, GH_DTL_ADDR, JOINID, ANN_NUM, anm_title, anm_div, anm_degree, gh_unqualify, gh_qualify)
+		VALUES
+		(GH_NUM_SEQ_NAME.NEXTVAL, #{ghName}, #{ghOfcName}, #{ghOfcNum}, #{ghYear}, #{ghSrttn}, #{ghSocNum}, #{ghBsnsNum}, #{ghJob}, #{ghFax}, #{ghHomeNum}, #{ghAcadBack},  #{ghCarrer}, #{ghTotalFile}, #{ghTotalFileReal}, #{ghEmail}, #{ghPhoneNum}, #{ghBank}, #{ghAccHol}, #{ghBankNum}, #{ghPostNum}, #{ghAddr}, #{ghDtlAddr}, #{joinId}, #{annNum}, #{anmTitle}, #{anmDiv}, #{anmDegree}, #{ghUnqualify}, #{ghQualify} )
+	</insert>
+	
+	<select id ="getList" resultMap="GhMap">
+	
+		<!-- select * from notice order by notice_NUMBER_SEQ DESC -->
+		
+		SELECT * FROM 
+		(SELECT ROWNUM as rn, tbl.* FROM 
+    		(SELECT GH_NUM_SEQ, anm_degree, anm_title, JOINID, GH_NAME, anm_div FROM gh 
+    		<include refid="search"/>
+    		ORDER BY ANN_NUM DESC) tbl )
+    		<![CDATA[ 
+		WHERE rn > (#{pageNum} -1 ) * #{cpp}
+		AND rn <= #{pageNum} * #{cpp}
+		]]>  
+		
+	</select>
+	
+	<select id="getTotal" resultType="int">
+	
+		select count(*) from GH
+	
+	</select>
+	
+	<select id = "getContent" resultMap="GhMap">
+	
+		select * from GH where GH_NUM_SEQ = #{ghNum}
+		
+	</select>
+	
+<!-- 	<update id="update">
+		
+		UPDATE GH SET GH_NAME = #{ghName}, GH_OFC_NAME = #{ghOfcName}, GH_OFC_NUM = #{ghOfcNum}, 
+		GH_YEAR = #{ghYear}, GH_SRTTN = #{ghSrttn}, GH_SOC_NUM = #{ghSocNum}, GH_BSNS_NUM = #{ghBsnsNum}, 
+		GH_JOB = #{ghJob}, GH_FAX = #{ghFax}, GH_HOME_NUM = #{ghHomeNum}, 
+		GH_ACAD_BACK = #{ghAcadBack}, GH_ACAD_BACK_FILE = #{ghAcadBackFile}, GH_ACAD_BACK_FILE_REAL = #{ghAcadBackFileReal},
+		GH_CARRER = #{ghCarrer}, GH_CARRER_FILE = #{ghCarrerFile}, GH_CARRER_FILE_REAL = #{ghCarrerFileReal}, 
+        GH_EMAIL = #{ghEmail}, GH_PHONE_NUM = #{ghPhoneNum}, GH_BANK = #{ghBank}, GH_ACC_HOL = #{ghAccHol}, 
+        GH_BANK_NUM = #{ghBankNum}, GH_POST_NUM = #{ghPostNum}, GH_ADDR = #{ghAddr}, GH_DTL_ADDR = #{ghDtlAddr}
+		 
+		where GH_NUM_SEQ = #{ghNum} 
+		
+	</update> -->
+	
+	<delete id="delete">
+	
+		DELETE FROM GH WHERE GH_NUM_SEQ = #{ghNum}
+		
+	</delete>
+	
+	<select id="getMypageContent" resultMap="GhMap">
+		SELECT * FROM GH where JOINID = #{id}
+	</select>
+	
+	<update id="changeQuali">
+	
+		UPDATE GH SET GH_QUALIFY = #{ghQualify} 
+		WHERE JOINID = #{joinId}
+	
+	</update>
+	
+	<select id ="getSlcList" resultMap="GhMap">
+	
+		SELECT * FROM gh 
+		where gh_qualify = 'Y'
+	
+		<!-- select * from notice order by notice_NUMBER_SEQ DESC -->
+		
+<!-- 		SELECT * FROM 
+		(SELECT ROWNUM as rn, tbl.* FROM 
+    		(SELECT GH_NUM_SEQ, anm_degree, anm_title, JOINID, GH_NAME, anm_div FROM gh 
+    		<include refid="search"/>
+    		ORDER BY ANN_NUM DESC) tbl )
+    		<![CDATA[ 
+		WHERE rn > (#{pageNum} -1 ) * #{cpp}
+		AND rn <= #{pageNum} * #{cpp}
+		]]>   -->
+		
+	</select>
+	
+	<update id="changeUnQuali">
+	
+		UPDATE GH SET GH_UNQUALIFY = #{ghUnqualify} 
+		WHERE JOINID = #{joinId}
+	
+	</update>
+	
+	
+
+	
+</mapper>

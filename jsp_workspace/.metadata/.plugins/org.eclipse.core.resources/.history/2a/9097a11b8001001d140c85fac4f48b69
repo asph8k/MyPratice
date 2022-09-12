@@ -1,0 +1,10 @@
+package insertion;
+
+public class 삽입정렬_문제01 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
